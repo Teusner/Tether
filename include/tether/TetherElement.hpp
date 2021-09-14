@@ -1,3 +1,7 @@
+/// \file TetherElement.hpp
+/// Implementation of TetherElement
+///
+
 #pragma once
 
 #include <chrono>

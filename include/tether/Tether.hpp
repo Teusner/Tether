@@ -1,3 +1,7 @@
+/// \file Tether.hpp
+/// Implementation of Tether
+///
+
 #pragma once
 
 #include <cmath>
