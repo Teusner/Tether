@@ -9,7 +9,10 @@ using namespace tether;
 int main(int, char*[]) {
     using namespace std::chrono_literals;
 
-    std::shared_ptr<tether::Tether> t = std::make_shared<Tether>();
+    std::double_t length = 10;
+    std::size_t n = 100;
+
+    std::shared_ptr<tether::Tether> t = std::make_shared<Tether>(length, n);
 
     tether::vtxTetherFigure Tfigure(t);
     Tfigure.Show();

@@ -6,3 +6,6 @@ target_link_libraries(example_101 Tether vtxTetherFigure)
 
 add_executable(TetherElementExample TetherElementExample.cpp)
 target_link_libraries(TetherElementExample TetherElement)
+
+add_executable(TetherExample TetherExample.cpp)
+target_link_libraries(TetherExample Tether TetherElement)
