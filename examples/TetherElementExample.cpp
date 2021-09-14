@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <ignition/math6/ignition/math/Vector4.hh>
 
 using namespace tether;
 
@@ -11,9 +12,10 @@ int main(int, char*[]) {
     std::double_t mass = 0.5;
     std::double_t volume = 0.1;
     std::double_t length = 0.02;
+    ignition::math::Vector4d X0(1.0, 2.0, 3.0, 4.0);
 
     // Create a TetherElement
-    TetherElement tether_element(mass, volume, length);
+    TetherElement tether_element(mass, volume, length, X0);
 
     // Accessing TetherElement parameters
     std::cout << ">> TetherElement parameters" << std::endl;
