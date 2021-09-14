@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.3)
+project(tether_examples)
+
+add_executable(example_101 example_101.cpp)
+target_link_libraries(example_101 Tether vtxTetherFigure)
+
+add_executable(TetherElementExample TetherElementExample.cpp)
+target_link_libraries(TetherElementExample TetherElement)

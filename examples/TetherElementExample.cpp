@@ -1,0 +1,37 @@
+//! [example]
+#include "tether/TetherElement.hpp"
+
+#include <cstdlib>
+#include <iostream>
+
+using namespace tether;
+
+int main(int, char*[]) {
+    // TetherElement parameters
+    std::double_t mass = 0.5;
+    std::double_t volume = 0.1;
+    std::double_t length = 0.02;
+
+    // Create a TetherElement
+    TetherElement tether_element(mass, volume, length);
+
+    // Accessing TetherElement parameters
+    std::cout << ">> TetherElement parameters" << std::endl;
+    std::cout << "mass \t: " << tether_element.Mass() << std::endl;
+    std::cout << "volume \t: " << tether_element.Volume() << std::endl;
+    std::cout << "length \t: " << tether_element.Length() << std::endl;
+
+    // Accessing TetherElement state
+    std::cout << ">> TetherElement state" << std::endl;
+    std::cout << "x \t: " << tether_element.x() << std::endl;
+    std::cout << "y \t: " << tether_element.y() << std::endl;
+    std::cout << "z \t: " << tether_element.z() << std::endl;
+    std::cout << "theta \t: " << tether_element.theta() << std::endl;
+
+    // Update the state from t to t + h
+    std::double_t h = 0.01;
+    tether_element.Step(h);
+
+    return EXIT_SUCCESS;
+}
+//! [example]
