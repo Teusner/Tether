@@ -18,19 +18,19 @@ namespace tether {
     };
 
     TEST_F(TetherElementTest, xTest) {
-        EXPECT_EQ(tether_element->x(), 0);
+        EXPECT_EQ(tether_element->X(), 0);
     }
 
     TEST_F(TetherElementTest, yTest) {
-        EXPECT_EQ(tether_element->y(), 0);
+        EXPECT_EQ(tether_element->Y(), 0);
     }
 
     TEST_F(TetherElementTest, zTest) {
-        EXPECT_EQ(tether_element->z(), 0);
+        EXPECT_EQ(tether_element->Z(), 0);
     }
 
     TEST_F(TetherElementTest, thetaTest) {
-        EXPECT_EQ(tether_element->theta(), 0);
+        EXPECT_EQ(tether_element->Theta(), 0);
     }
 
     TEST_F(TetherElementTest, massTest) {

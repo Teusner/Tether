@@ -25,10 +25,10 @@ int main(int, char*[]) {
 
     // Accessing TetherElement state
     std::cout << ">> TetherElement state" << std::endl;
-    std::cout << "x \t: " << tether_element.x() << std::endl;
-    std::cout << "y \t: " << tether_element.y() << std::endl;
-    std::cout << "z \t: " << tether_element.z() << std::endl;
-    std::cout << "theta \t: " << tether_element.theta() << std::endl;
+    std::cout << "x \t: " << tether_element.X() << std::endl;
+    std::cout << "y \t: " << tether_element.Y() << std::endl;
+    std::cout << "z \t: " << tether_element.Z() << std::endl;
+    std::cout << "theta \t: " << tether_element.Theta() << std::endl;
 
     // Update the state from t to t + h
     std::double_t h = 0.01;

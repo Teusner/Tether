@@ -46,7 +46,7 @@ namespace tether {
         // as many points as you like
         std::shared_ptr<TetherElement> tether_element = m_tether->Head();
         for (std::size_t i = 0; i < m_tether->N(); i++) {
-            m_points->InsertNextPoint(tether_element->x(), tether_element->y(), tether_element->z());
+            m_points->InsertNextPoint(tether_element->X(), tether_element->Y(), tether_element->Z());
             tether_element = tether_element->Next();
         }
 
@@ -213,7 +213,7 @@ namespace tether {
         m_points->Reset();
         std::shared_ptr<TetherElement> tether_element = m_tether->Head();
         for (std::size_t i = 0; i < m_tether->N(); i++) {
-            m_points->InsertNextPoint(tether_element->x(), tether_element->y(), tether_element->z());
+            m_points->InsertNextPoint(tether_element->X(), tether_element->Y(), tether_element->Z());
             tether_element = tether_element->Next();
         }
         m_polydata->Modified();

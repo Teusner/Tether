@@ -61,7 +61,7 @@ namespace tether {
 		/// \param[in] length  The length between two TetherElements.
 		/// \param[in] volume  The volume of the TetherElement.
 		/// \param[in] X0  The initial state of the TetherElement.
-		public: TetherElement(std::double_t mass, std::double_t volume, std::double_t length, ignition::math::Vector4d X0) : m_mass(mass), m_volume(volume), m_length(length), X(X0) {};
+		public: TetherElement(std::double_t mass, std::double_t volume, std::double_t length, ignition::math::Vector4d X0) : m_mass(mass), m_volume(volume), m_length(length), m_X(X0) {};
 
 		/// \brief Default destructor of the TetherElement
 		public: ~TetherElement() = default;
@@ -81,19 +81,19 @@ namespace tether {
 
 		/// \brief x-axis coordinate getter
 		/// \return x-axis coordinate
-		public: std::double_t x() const;
+		public: std::double_t X() const;
 
 		/// \brief y-axis coordinate getter
 		/// \return y-axis coordinate
-		public: std::double_t y() const;
+		public: std::double_t Y() const;
 
 		/// \brief z-axis coordinate getter
 		/// \return z-axis coordinate
-		public: std::double_t z() const;
+		public: std::double_t Z() const;
 
 		/// \brief theta getter
 		/// \return theta
-		public: std::double_t theta() const;
+		public: std::double_t Theta() const;
 
 		/// \brief Position getter
 		/// \return The current TetherElement Position
@@ -149,18 +149,14 @@ namespace tether {
 
 
 		/// \brief State of the TetherElement
-		///
 		/// The State of the TetherElement is X = [x, y, z, theta]
-		/// with x the abscissa, y the ordinate, z the applicate and
-		/// theta the orientation of the TetherElement along the previous
-		/// link
-		private: ignition::math::Vector4d X = ignition::math::Vector4d::Zero;
+		private: ignition::math::Vector4d m_X = ignition::math::Vector4d::Zero;
 
 		/// \brief Derivative state of the TetherElement
-		private: ignition::math::Vector4d dX = ignition::math::Vector4d::Zero;
+		private: ignition::math::Vector4d m_dX = ignition::math::Vector4d::Zero;
 
 		/// \brief Two-time derivative state of the TetherElement
-		private: ignition::math::Vector4d ddX = ignition::math::Vector4d::Zero;
+		private: ignition::math::Vector4d m_ddX = ignition::math::Vector4d::Zero;
 
 		/// \brief the mass of the TetherElement
 		private: std::double_t m_mass;
