@@ -27,27 +27,6 @@ namespace tether {
     /// \snippet examples/TetherElementExample.cpp example
 	class TetherElement {
 
-		/// \brief Constructor, emmpty TetherElement with null parameters and null state
-		///
-		/// Disable command clamping by setting _cmdMin to a value larger
-		/// than _cmdMax. Command clamping is disabled by default.
-		///
-		/// Disable integral clamping by setting _iMin to a value larger
-		/// than _iMax. Integral clamping is disabled by default.
-		///
-		/// \param[in] mass  The mass.
-		/// \param[in] length  The length between two TetherElements.
-		/// \param[in] volume  The volume.
-		/// \param[in] X0 The initial state.
-		/// \param[in] length_PID The beahavioral PID model for forces.
-		/// \param[in] twist_PID The behavioral PID model for twist.
-		// public: TetherElement(	std::double_t mass = 0.0,
-		// 						std::double_t length = 0.0,
-		// 						std::double_t volume = 0.0,
-		// 						ignition::math::Vector4d X0 = ignition::math::Vector4d::Zero,
-		// 						ignition::math::PID length_PID = ignition::math::PID(),
-		// 						ignition::math::PID twist_PID = ignition::math::PID()) : m_mass(mass), m_length(length), m_volume(volume), X(X0), m_length_prev_PID(length_PID), m_length_next_PID(length_PID), m_twist_prev_PID(twist_PID), m_twist_next_PID(twist_PID) {};
-
 		/// \brief Constructor, TetherElement with mass, volume and length
 		///
 		/// \param[in] mass  The mass of the TetherElement.
