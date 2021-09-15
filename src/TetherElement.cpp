@@ -92,14 +92,14 @@ namespace tether {
 
 	Eigen::Vector3d TetherElement::Ft_prev() const {
 		if (m_previous != nullptr)
-			return - m_length_prev_PID.Cmd() * (m_previous->Position() - Position()) / PreviousLength();
+			return m_length_prev_PID.Cmd() * (m_previous->Position() - Position()) / PreviousLength();
 		else
 			return Eigen::Vector3d::Zero(3);
 	}
 
 	Eigen::Vector3d TetherElement::Ft_next() const {
 		if (m_next != nullptr)
-			return - m_length_next_PID.Cmd() * (m_next->Position() - Position()) / NextLength();
+			return m_length_next_PID.Cmd() * (m_next->Position() - Position()) / NextLength();
 		else
 			return Eigen::Vector3d::Zero(3);
 	}

@@ -14,8 +14,8 @@ namespace tether {
 
 		// Temporary variables
 		double mass = 1;
-		double volume = 1;
-		double l = 1;
+		double volume = 0.0001;
+		double l = length / (n-1);
 
 		Eigen::Vector3d X = Eigen::Vector3d::Zero(3);
 
@@ -40,8 +40,8 @@ namespace tether {
 
 		// Temporary variables
 		double mass = 1;
-		double volume = 1;
-		double l = 1;
+		double volume = 0.001;
+		double l = length / (n-1);
 
 		Eigen::Vector3d X = Xhead;
 
