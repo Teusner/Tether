@@ -35,10 +35,6 @@ namespace tether {
 		return Fg() + Fb() + Ft_prev() + Ft_next() + Ff();
 	}
 
-	Eigen::Vector3d TetherElement::Acceleration(std::double_t h) {
-		return Fg() + Fb() + Ft_prev(h) + Ft_next(h) + Ff();
-	}
-
 	std::double_t TetherElement::Volume() const {
 		return m_volume;
 	}
@@ -49,6 +45,11 @@ namespace tether {
 
 	std::double_t TetherElement::Length() const {
 		return m_length;
+	}
+
+	void TetherElement::SetPID(const ignition::math::PID &length_pid) {
+		m_length_prev_PID = length_pid;
+		m_length_next_PID = length_pid;
 	}
 
 	void TetherElement::SetPrevious(const std::shared_ptr<TetherElement> previous) {
@@ -86,66 +87,21 @@ namespace tether {
 	}
 
 	Eigen::Vector3d TetherElement::Ff() const  {
-		Eigen::Vector3d force = - m_drag_f *  (m_dX.cwiseAbs().array() * m_dX.array()).matrix();
-		return force;
+		return - m_drag_f *  (m_dX.cwiseAbs().array() * m_dX.array()).matrix();
 	}
 
 	Eigen::Vector3d TetherElement::Ft_prev() const {
-		Eigen::Vector3d force = Eigen::Vector3d::Zero(3);
-
-		if (m_previous != nullptr) {
-			Eigen::Vector3d u = (m_previous->Position() - Position());
-			u = u / u.norm();
-
-			// Computing force
-			force = - m_length_prev_PID.Cmd() * u;
-		}
-		return force;
-	}
-
-	Eigen::Vector3d TetherElement::Ft_prev(const std::double_t h) {
-		Eigen::Vector3d force = Eigen::Vector3d::Zero(3);
-
-		if (m_previous != nullptr) {
-			Eigen::Vector3d u = (m_previous->Position() - Position());
-			u = u / u.norm();
-
-			// Updating PID
-			m_length_prev_PID.Update(PreviousLength() - m_length, std::chrono::duration<double>(h));
-
-			// Computing force
-			force = - m_length_prev_PID.Cmd() * u;
-		}
-		return force;
+		if (m_previous != nullptr)
+			return - m_length_prev_PID.Cmd() * (m_previous->Position() - Position()) / PreviousLength();
+		else
+			return Eigen::Vector3d::Zero(3);
 	}
 
 	Eigen::Vector3d TetherElement::Ft_next() const {
-		Eigen::Vector3d force = Eigen::Vector3d::Zero(3);
-
-		if (m_next != nullptr) {
-			Eigen::Vector3d u = (m_next->Position() - Position());
-			u = u / u.norm();
-
-			// Computing force
-			force = m_length_next_PID.Cmd() * u;
-		}
-		return force;
-	}
-
-	Eigen::Vector3d TetherElement::Ft_next(const std::double_t h) {
-		Eigen::Vector3d force = Eigen::Vector3d::Zero(3);
-
-		if (m_next != nullptr) {
-			Eigen::Vector3d u = (m_next->Position() - Position());
-			u = u / u.norm();
-
-			// Updating PID
-			m_length_next_PID.Update(NextLength() - m_length, std::chrono::duration<double>(h));
-
-			// Computing force
-			force = m_length_next_PID.Cmd() * u;
-		}
-		return force;
+		if (m_next != nullptr)
+			return - m_length_next_PID.Cmd() * (m_next->Position() - Position()) / NextLength();
+		else
+			return Eigen::Vector3d::Zero(3);
 	}
 
 	Eigen::Vector3d TetherElement::Fr_prev(const std::double_t h) {
@@ -175,9 +131,13 @@ namespace tether {
 	}
 
 	void TetherElement::Step(double h) {
-		// Computing next state using Euler's integration
 		if ((m_previous != nullptr) && (m_next != nullptr)) {
-			m_dX += h * Acceleration(h);
+			// Updating PID
+			m_length_prev_PID.Update(PreviousLength() - m_length, std::chrono::duration<double>(h));
+			m_length_next_PID.Update(NextLength() - m_length, std::chrono::duration<double>(h));
+
+			// Computing next state using Euler's integration
+			m_dX += h * Acceleration();
 			m_X += h * m_dX;
 		}
 	}

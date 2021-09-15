@@ -156,6 +156,8 @@ namespace tether {
 		/// \param[in] twist_pid the PID used for twist
 		public: void set_PID(const ignition::math::PID &length_pid, const ignition::math::PID &twist_pid);
 
+		public: void SetPID(const ignition::math::PID &length_pid);
+
 
 		/// \brief Step method
 		///
@@ -192,22 +194,14 @@ namespace tether {
 		/// \brief Pointer to the next TetherElement
 		private: std::shared_ptr<TetherElement> m_next = nullptr;
 
-
-		/// \brief Acceleration compute
-		/// \return The current TetherElement Acceleration by computing a new
-		/// state in PIDs
-		public: Eigen::Vector3d Acceleration(std::double_t h);
-
 		private:
 			// Forces functions
-			Eigen::Vector3d Ft_prev(const std::double_t h);
-			Eigen::Vector3d Ft_next(const std::double_t h);
 			Eigen::Vector3d Fr_prev(std::double_t h);
 			Eigen::Vector3d Fr_next(std::double_t h);
 
 			// Behavioral Force PID on length and twist
-			ignition::math::PID m_length_prev_PID = ignition::math::PID(500, 10, 35);
-			ignition::math::PID m_length_next_PID = ignition::math::PID(500, 10, 35);
+			ignition::math::PID m_length_prev_PID = ignition::math::PID(4900, 10, 50);
+			ignition::math::PID m_length_next_PID = ignition::math::PID(4900, 10, 50);
 			ignition::math::PID m_twist_prev_PID;
 			ignition::math::PID m_twist_next_PID;
 
