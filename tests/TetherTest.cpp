@@ -3,6 +3,7 @@
 
 #include <math.h>
 #include <memory>
+#include <eigen3/Eigen/Dense>
 
 
 namespace tether {
@@ -23,8 +24,8 @@ namespace tether {
             }
             std::double_t length = 10;
             std::size_t n = 100;
-            ignition::math::Vector4d Xhead = ignition::math::Vector4d(-5, 3, 1, 0);
-            ignition::math::Vector4d Xtail = ignition::math::Vector4d(5, 3, 1, 0);
+            Eigen::Vector3d Xhead = Eigen::Vector3d(-5, 3, 1);
+            Eigen::Vector3d Xtail = Eigen::Vector3d(5, 3, 1);
             std::shared_ptr<Tether> tether;
     };
 
@@ -48,14 +49,12 @@ namespace tether {
         EXPECT_EQ(tether->Head()->X(), -5);
         EXPECT_EQ(tether->Head()->Y(), 3);
         EXPECT_EQ(tether->Head()->Z(), 1);
-        EXPECT_EQ(tether->Head()->Theta(), 0);
     }
 
     TEST_F(TetherTestConstructor2, XTailTest) {
         EXPECT_EQ(tether->Tail()->X(), 5);
         EXPECT_EQ(tether->Tail()->Y(), 3);
         EXPECT_EQ(tether->Tail()->Z(), 1);
-        EXPECT_EQ(tether->Tail()->Theta(), 0);
     }
 
 }; // namespace tether

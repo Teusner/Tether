@@ -1,6 +1,5 @@
 /// \file TetherElement.hpp
 /// Implementation of TetherElement
-///
 
 #pragma once
 
@@ -10,7 +9,9 @@
 #include <string>
 
 #include <ignition/math6/ignition/math/PID.hh>
-#include <ignition/math6/ignition/math/Vector4.hh>
+
+#include <eigen3/Eigen/Dense>
+
 
 namespace tether {
 
@@ -44,7 +45,7 @@ namespace tether {
 		/// \param[in] length  The length between two TetherElements.
 		/// \param[in] volume  The volume of the TetherElement.
 		/// \param[in] X0  The initial state of the TetherElement.
-		public: TetherElement(std::double_t mass, std::double_t volume, std::double_t length, ignition::math::Vector4d X0) : m_mass(mass), m_volume(volume), m_length(length), m_X(X0) {};
+		public: TetherElement(std::double_t mass, std::double_t volume, std::double_t length, Eigen::Vector3d X0) : m_mass(mass), m_volume(volume), m_length(length), m_X(X0) {};
 
 		/// \brief Default destructor of the TetherElement
 		public: ~TetherElement() = default;
@@ -74,21 +75,17 @@ namespace tether {
 		/// \return z-axis coordinate
 		public: std::double_t Z() const;
 
-		/// \brief theta getter
-		/// \return theta
-		public: std::double_t Theta() const;
-
 		/// \brief Position getter
 		/// \return The current TetherElement Position
-		public: ignition::math::Vector4d Position() const;
+		public: Eigen::Vector3d Position() const;
 
 		/// \brief Velocity getter
 		/// \return The current TetherElement Velocity
-		public: ignition::math::Vector4d Velocity() const;
+		public: Eigen::Vector3d Velocity() const;
 
 		/// \brief Acceleration getter
 		/// \return The current TetherElement Acceleration
-		public: ignition::math::Vector4d Acceleration() const;
+		public: Eigen::Vector3d Acceleration() const;
 
 
 		/// \brief Previous TetherElement
@@ -99,19 +96,58 @@ namespace tether {
 		/// \return Pointer to the next TetherElement
 		public: std::shared_ptr<TetherElement> Next() const;
 
+		/// \brief Previous TetherElement setter
+		/// Set the previous TetherElement pointer
+		public: std::double_t PreviousLength() const;
+
+		/// \brief Next TetherElement setter
+		/// Set the next TetherElement pointer
+		public: std::double_t NextLength() const;
 
 
 		/// \brief Previous TetherElement setter
-		///
 		/// Set the previous TetherElement pointer
-		///
-		public: void SetPrevious(std::shared_ptr<TetherElement> previous);
+		public: void SetPrevious(const std::shared_ptr<TetherElement> previous);
 
 		/// \brief Next TetherElement setter
-		///
 		/// Set the next TetherElement pointer
-		///
-		public: void SetNext(std::shared_ptr<TetherElement> next);
+		public: void SetNext(const std::shared_ptr<TetherElement> next);
+
+
+		/// \brief Gravity force
+		/// Compute the gravity force applied on the TetherElement
+		/// \f$\mathbf{F_g} = - m \cdot \mathbf{g}\f$
+		/// \return The computed gravity force
+		public: Eigen::Vector3d Fg() const;
+
+		/// \brief The buoyancy force
+		/// Compute the buoyancy force applied on the TetherElement
+		/// \f$\mathbf{F_b} = - \rho \cdot V \cdot \mathbf{g}\f$
+		/// \return The computed gravity force
+		public: Eigen::Vector3d Fb() const;
+
+		/// \brief The hydrodynamic drag force
+		/// Compute the hydrodynamic drag force applied on the TetherElement
+		/// \f$\mathbf{F_f} = - f \cdot |\mathbf{V}| \cdot \mathbf{V}\f$
+		/// \return The computed gravity force
+		/// \return The hydrodynamic drag force applied to the TetherElement
+		public: Eigen::Vector3d Ff() const;
+
+		/// \brief The previous behavioral force
+		/// The previous force induced by the previous TetherElement
+		/// on the current TetherElement. For this force a behavioral model
+		/// based on a PID corrector is purposed to reach a correct distance
+		/// between the current TetherELement and the previous one.
+		/// \return The previous behavioral force 
+		public: Eigen::Vector3d Ft_prev() const;
+
+		/// \brief The next behavioral force
+		/// The next force induced by the next TetherElement
+		/// on the current TetherElement. For this force a behavioral model
+		/// based on a PID corrector is purposed to reach a correct distance
+		/// between the current TetherELement and the next one.
+		/// \return The next behavioral force 
+		public: Eigen::Vector3d Ft_next() const;
 
 
 		/// \brief Setter for the behavioral force and twist PID
@@ -132,14 +168,14 @@ namespace tether {
 
 
 		/// \brief State of the TetherElement
-		/// The State of the TetherElement is X = [x, y, z, theta]
-		private: ignition::math::Vector4d m_X = ignition::math::Vector4d::Zero;
+		/// The State of the TetherElement is X = [x, y, z]
+		private: Eigen::Vector3d m_X = Eigen::Vector3d::Zero(3);
 
 		/// \brief Derivative state of the TetherElement
-		private: ignition::math::Vector4d m_dX = ignition::math::Vector4d::Zero;
+		private: Eigen::Vector3d m_dX = Eigen::Vector3d::Zero(3);
 
 		/// \brief Two-time derivative state of the TetherElement
-		private: ignition::math::Vector4d m_ddX = ignition::math::Vector4d::Zero;
+		private: Eigen::Vector3d m_ddX = Eigen::Vector3d::Zero(3);
 
 		/// \brief the mass of the TetherElement
 		private: std::double_t m_mass;
@@ -155,22 +191,23 @@ namespace tether {
 
 		/// \brief Pointer to the next TetherElement
 		private: std::shared_ptr<TetherElement> m_next = nullptr;
-		
+
+
+		/// \brief Acceleration compute
+		/// \return The current TetherElement Acceleration by computing a new
+		/// state in PIDs
+		public: Eigen::Vector3d Acceleration(std::double_t h);
 
 		private:
-
 			// Forces functions
-			ignition::math::Vector4d Fg();
-			ignition::math::Vector4d Fb();
-			ignition::math::Vector4d Ff();
-			ignition::math::Vector4d Ft_prev(double h);
-			ignition::math::Vector4d Ft_next(double h);
-			ignition::math::Vector4d Fr_prev(double h);
-			ignition::math::Vector4d Fr_next(double h);
+			Eigen::Vector3d Ft_prev(const std::double_t h);
+			Eigen::Vector3d Ft_next(const std::double_t h);
+			Eigen::Vector3d Fr_prev(std::double_t h);
+			Eigen::Vector3d Fr_next(std::double_t h);
 
 			// Behavioral Force PID on length and twist
-			ignition::math::PID m_length_prev_PID;
-			ignition::math::PID m_length_next_PID;
+			ignition::math::PID m_length_prev_PID = ignition::math::PID(500, 10, 35);
+			ignition::math::PID m_length_next_PID = ignition::math::PID(500, 10, 35);
 			ignition::math::PID m_twist_prev_PID;
 			ignition::math::PID m_twist_next_PID;
 

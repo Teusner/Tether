@@ -3,7 +3,7 @@
 
 #include <cstdlib>
 #include <iostream>
-#include <ignition/math6/ignition/math/Vector4.hh>
+#include <eigen3/Eigen/Dense>
 
 using namespace tether;
 
@@ -12,7 +12,7 @@ int main(int, char*[]) {
     std::double_t mass = 0.5;
     std::double_t volume = 0.1;
     std::double_t length = 0.02;
-    ignition::math::Vector4d X0(1.0, 2.0, 3.0, 4.0);
+    Eigen::Vector3d X0(1.0, 2.0, 3.0);
 
     // Create a TetherElement
     TetherElement tether_element(mass, volume, length, X0);
@@ -28,7 +28,6 @@ int main(int, char*[]) {
     std::cout << "x \t: " << tether_element.X() << std::endl;
     std::cout << "y \t: " << tether_element.Y() << std::endl;
     std::cout << "z \t: " << tether_element.Z() << std::endl;
-    std::cout << "theta \t: " << tether_element.Theta() << std::endl;
 
     // Update the state from t to t + h
     std::double_t h = 0.01;

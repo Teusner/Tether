@@ -1,6 +1,5 @@
 /// \file Tether.hpp
 /// Implementation of Tether
-///
 
 #pragma once
 
@@ -39,7 +38,7 @@ namespace tether {
 		/// \param[in] n  The number of TetherElement used to simulate the Tether.
 		/// \param[in] Xhead  The initial state of the head TetherElement.
 		/// \param[in] Xtail  The initial state of the tail TetherElement.
-		public: Tether(std::double_t length, std::size_t n, ignition::math::Vector4d Xhead, ignition::math::Vector4d Xtail);
+		public: Tether(std::double_t length, std::size_t n, Eigen::Vector3d Xhead, Eigen::Vector3d Xtail);
 
 		/// \brief Destructor
 		public: ~Tether() = default;

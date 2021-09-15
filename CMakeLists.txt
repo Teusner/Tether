@@ -4,6 +4,9 @@ project(Tether)
 set(CMAKE_CXX_STANDARD 11)
 
 find_package(ignition-math6 REQUIRED)
+
+find_package (Eigen3 3.3 REQUIRED NO_MODULE)
+
 find_package(VTK COMPONENTS
     vtkCommonColor
     vtkCommonCore
@@ -21,15 +24,15 @@ include(${VTK_USE_FILE})
 
 add_library(TetherElement src/TetherElement.cpp)
 target_include_directories(TetherElement PUBLIC include)
-target_link_libraries(TetherElement ignition-math6::ignition-math6 ${VTK_LIBRARIES})
+target_link_libraries(TetherElement Eigen3::Eigen ignition-math6::ignition-math6 ${VTK_LIBRARIES})
 
 add_library(Tether src/Tether.cpp)
 target_include_directories(Tether PUBLIC include)
-target_link_libraries(Tether TetherElement ignition-math6::ignition-math6)
+target_link_libraries(Tether TetherElement Eigen3::Eigen ignition-math6::ignition-math6)
 
-add_library(vtxTetherFigure src/vtxTetherFigure.cpp)
-target_include_directories(vtxTetherFigure PUBLIC include)
-target_link_libraries(vtxTetherFigure TetherElement ignition-math6::ignition-math6 ${VTK_LIBRARIES})
+add_library(vtkTetherFigure src/vtkTetherFigure.cpp)
+target_include_directories(vtkTetherFigure PUBLIC include)
+target_link_libraries(vtkTetherFigure TetherElement Eigen3::Eigen ignition-math6::ignition-math6 ${VTK_LIBRARIES})
 
 add_subdirectory(examples)
 add_subdirectory(tests)

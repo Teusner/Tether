@@ -1,4 +1,4 @@
-#include "tether/vtxTetherFigure.hpp"
+#include "tether/vtkTetherFigure.hpp"
 
 #include <string>
 
@@ -17,65 +17,72 @@
 #include <vtkMath.h>
 #include <vtkMinimalStandardRandomSequence.h>
 #include <vtkTransformPolyDataFilter.h>
-#include <vtkGlyph3D.h>
+#include <vtkLineSource.h>
+#include <vtkTubeFilter.h>
+#include <vtkCamera.h>
 
 
 namespace tether {
 
-    vtxTetherFigure::vtxTetherFigure(std::shared_ptr<Tether> tether) {
+    vtkTetherFigure::vtkTetherFigure(std::shared_ptr<Tether> tether) {
         // Tether pointer storage
         m_tether = tether;
+
+        // Creating a color solver
+        m_colors = vtkSmartPointer<vtkNamedColors>::New();
 
         // Creating a render window
         m_renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
 
-        // Adding an interactor
-        m_renderWindowInteractor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
-        m_renderWindowInteractor->SetRenderWindow(m_renderWindow);
-
-        // Creating a color solver
-        vtkSmartPointer<vtkNamedColors> m_colors = vtkSmartPointer<vtkNamedColors>::New();
-
         // Adding a renderer
         m_renderer = vtkSmartPointer<vtkRenderer>::New();
         m_renderer->SetBackground(m_colors->GetColor3d("blue_light").GetData());
+        m_renderWindow->SetMultiSamples(0);
         m_renderWindow->AddRenderer(m_renderer);
 
-        // Render a sphere for each TetherElements
+        // Creating a sphere source 
+        m_sphereSource = vtkSmartPointer<vtkSphereSource>::New();
+        m_sphereSource->SetRadius(0.1);
+        m_sphereSource->SetPhiResolution(50);
+        m_sphereSource->SetThetaResolution(50);
+
+        // Creating a point vector to hold TetherElement centers
         m_points = vtkSmartPointer<vtkPoints>::New();
-        // as many points as you like
+
+        // Render a sphere for each TetherElements
         std::shared_ptr<TetherElement> tether_element = m_tether->Head();
         for (std::size_t i = 0; i < m_tether->N(); i++) {
             m_points->InsertNextPoint(tether_element->X(), tether_element->Y(), tether_element->Z());
             tether_element = tether_element->Next();
         }
 
-        m_polydata = vtkSmartPointer<vtkPolyData>::New();
-        m_polydata->SetPoints(m_points);
+        // Creating LineSource
+        m_lineSource = vtkSmartPointer<vtkLineSource>::New();
+        m_lineSource->SetPoints(m_points);
 
-        vtkSmartPointer<vtkSphereSource> sphereSource = vtkSmartPointer<vtkSphereSource>::New();
-        sphereSource->SetRadius(0.1);
-        // sphereSource->SetPhiResolution(100);
-        // sphereSource->SetThetaResolution(100);
+        // Creating TubeFilter
+        m_tubeFilter = vtkSmartPointer<vtkTubeFilter>::New();
+        m_tubeFilter->SetInputConnection(m_lineSource->GetOutputPort());
+        m_tubeFilter->SetRadius(0.02); // default is .5
+        m_tubeFilter->SetNumberOfSides(50);
+        m_tubeFilter->Update();
 
+        // Creating a mapper
+        m_mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
+        m_mapper->SetInputConnection(m_tubeFilter->GetOutputPort());
+        
+        m_actor = vtkSmartPointer<vtkActor>::New();
+        m_actor->GetProperty()->SetColor(m_colors->GetColor3d("cadmium_lemon").GetData());
+        m_actor->SetMapper(m_mapper);
+        m_mapper->Update();
+        m_renderer->AddActor(m_actor);
 
-        vtkSmartPointer<vtkGlyph3D> glyph3D = vtkSmartPointer<vtkGlyph3D>::New();
-        glyph3D->OrientOff(); // disable orientation
-        glyph3D->SetSourceConnection(sphereSource->GetOutputPort());
-        glyph3D->SetInputData(m_polydata);
-        glyph3D->Update();
+        m_camera = vtkSmartPointer<vtkCamera>::New();
+        Eigen::Vector3d mid = 0.5 * (tether->Head()->Position() + tether->Tail()->Position());
+        m_camera->SetPosition(mid[0], mid[1], mid[2] + 25);
+        m_camera->SetFocalPoint(mid[0], mid[1], mid[2]);
 
-        vtkSmartPointer<vtkPolyDataMapper> mapper = vtkSmartPointer<vtkPolyDataMapper>::New();
-        mapper->SetInputConnection(glyph3D->GetOutputPort());
-        mapper->ScalarVisibilityOff(); // use color from actor
-
-        vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
-        actor->GetProperty()->SetColor(m_colors->GetColor3d("cadmium_lemon").GetData());
-        actor->SetMapper(mapper);
-
-        mapper->Update();
-
-        m_renderer->AddActor(actor);
+        m_renderer->SetActiveCamera(m_camera);
     }
 
     // void vtxTetherFigure::AddTether() {
@@ -209,19 +216,31 @@ namespace tether {
     //     }
     // }
 
-    void vtxTetherFigure::Show() {
-        m_points->Reset();
-        std::shared_ptr<TetherElement> tether_element = m_tether->Head();
-        for (std::size_t i = 0; i < m_tether->N(); i++) {
-            m_points->InsertNextPoint(tether_element->X(), tether_element->Y(), tether_element->Z());
-            tether_element = tether_element->Next();
-        }
-        m_polydata->Modified();
-        m_renderWindow->Render();
-        m_renderWindowInteractor->Render();
-    }
+    void vtkTetherFigure::Show() {
+        // Create an Animation Scene
+        m_scene = vtkSmartPointer<vtkAnimationScene>::New();
+        m_scene->SetModeToRealTime();
+        m_scene->SetFrameRate(30);
+        m_scene->SetStartTime(0);
+        m_scene->SetEndTime(7);
 
-    void vtxTetherFigure::StartInteractor() {
+        // Create an Animation Cue to animate the camera.
+        m_cue1 = vtkSmartPointer<vtkCustomAnimationCue>::New();
+        m_cue1->m_lineSource = m_lineSource;
+        m_cue1->m_points = m_points;
+        m_cue1->m_tether = m_tether;
+        m_cue1->m_renderWindow = m_renderWindow;
+        m_cue1->SetTimeModeToNormalized();
+        m_cue1->SetStartTime(0);
+        m_cue1->SetEndTime(1);
+        m_scene->AddCue(m_cue1);
+
+        m_renderWindowInteractor = vtkSmartPointer<vtkRenderWindowInteractor>::New();
+        m_renderWindowInteractor->SetRenderWindow(m_renderWindow);
+
+        m_scene->Play();
+        m_scene->Stop();
+
         m_renderWindowInteractor->Start();
     }
 }

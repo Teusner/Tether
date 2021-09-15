@@ -29,10 +29,6 @@ namespace tether {
         EXPECT_EQ(tether_element->Z(), 0);
     }
 
-    TEST_F(TetherElementTest, thetaTest) {
-        EXPECT_EQ(tether_element->Theta(), 0);
-    }
-
     TEST_F(TetherElementTest, massTest) {
         EXPECT_EQ(tether_element->Mass(), mass);
     }
