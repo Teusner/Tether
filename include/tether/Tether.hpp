@@ -7,6 +7,8 @@
 #include <cstddef>
 #include <memory>
 
+#include <Eigen/Dense>
+
 #include "tether/TetherElement.hpp"
 
 namespace tether {
@@ -51,6 +53,14 @@ namespace tether {
 		/// \return The Tether length
 		public: std::double_t Length() const;
 
+		/// \brief Compute the current Tether length
+		/// Compute the real Tether length by summing length of links
+		/// between each TetherElement from head to tail. The result is
+		/// the current Tteher length and could be different of the value
+		/// returned by Tether::Length.
+		/// \return The computed Tether length
+		std::double_t ComputeLength() const;
+
 		/// \brief Head TetherElement pointer
 		/// \return Pointer to the head TetherElement
 		public: std::shared_ptr<TetherElement> Head() const;
@@ -65,7 +75,7 @@ namespace tether {
 		/// with the integration time-step h.
 		///
 		/// \param[in] h integration time in seconds
-		public: void Step(std::double_t h);
+		public: void Step(const std::double_t h);
 
 		/// \brief The number of the TetherElement
 		private: std::size_t m_n;

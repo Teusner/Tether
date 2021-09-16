@@ -1,11 +1,11 @@
 #pragma once
 
-#include <math.h>
+#include <Eigen/Dense>
 
 namespace constants {
     
     namespace earth {
-        constexpr std::double_t g = 9.81; // m.s^{-2}
+        const Eigen::Vector3d g (0., 0., -9.81); // m.s^{-2}
     } // namespace earth
 
     namespace water {

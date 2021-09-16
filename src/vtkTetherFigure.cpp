@@ -222,7 +222,7 @@ namespace tether {
         m_scene->SetModeToRealTime();
         m_scene->SetFrameRate(30);
         m_scene->SetStartTime(0);
-        m_scene->SetEndTime(45);
+        m_scene->SetEndTime(30);
 
         // Create an Animation Cue to animate the camera.
         m_cue1 = vtkSmartPointer<vtkCustomAnimationCue>::New();
@@ -230,9 +230,9 @@ namespace tether {
         m_cue1->m_points = m_points;
         m_cue1->m_tether = m_tether;
         m_cue1->m_renderWindow = m_renderWindow;
-        m_cue1->SetTimeModeToNormalized();
+        m_cue1->SetTimeModeToRelative();
         m_cue1->SetStartTime(0);
-        m_cue1->SetEndTime(1);
+        m_cue1->SetEndTime(30);
         m_scene->AddCue(m_cue1);
 
         m_renderWindowInteractor = vtkSmartPointer<vtkRenderWindowInteractor>::New();

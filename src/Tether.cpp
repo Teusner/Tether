@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <memory>
 
-#include <eigen3/Eigen/Dense>
+#include <Eigen/Dense>
 
 
 namespace tether {
@@ -24,7 +24,7 @@ namespace tether {
 		m_head = previous_tether_element;
 
 		for (std::size_t i = 1; i < m_n; i++) {
-			X[0] += 0.1;
+			X[0] += 0.08;
 			X[1] = sin((double)i/15.);
 			next_tether_element = std::make_shared<TetherElement>(mass, volume, l, X);
 			previous_tether_element->SetNext(next_tether_element);
@@ -67,6 +67,16 @@ namespace tether {
 	std::double_t Tether::Length() const {
 		return m_length;
 	}
+
+	std::double_t Tether::ComputeLength() const {
+		std::double_t length = 0;
+		std::shared_ptr<TetherElement> tether_element = m_head;
+		while (tether_element != m_tail) {
+			length += tether_element->NextLength();
+			tether_element = tether_element->Next();
+		}
+		return length;
+	}
 	
 	std::shared_ptr<TetherElement> Tether::Head() const {
 		return m_head;
@@ -76,7 +86,7 @@ namespace tether {
 		return m_tail;
 	}
 
-	void Tether::Step(double h) {
+	void Tether::Step(const std::double_t h) {
 		std::shared_ptr<TetherElement> tether_element = m_head;
 		while (tether_element != m_tail) {
 			tether_element->Step(h);

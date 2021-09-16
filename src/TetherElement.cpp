@@ -5,12 +5,10 @@
 #include <memory>
 
 #include <ignition/math6/ignition/math/PID.hh>
-
 #include <eigen3/Eigen/Dense>
 
 
 namespace tether {
-
 	std::double_t TetherElement::X() const {
 		return m_X[0];
 	}
@@ -77,29 +75,27 @@ namespace tether {
 	}
 
 	Eigen::Vector3d TetherElement::Fg() const {
-		Eigen::Vector3d force(0., 0., - m_mass * constants::earth::g);
-		return force;
+		return m_mass * constants::earth::g;
 	}
 
 	Eigen::Vector3d TetherElement::Fb() const {
-		Eigen::Vector3d force(0., 0., constants::water::rho * m_volume * constants::earth::g);
-		return force;
+		return - constants::water::rho * m_volume * constants::earth::g;
 	}
 
 	Eigen::Vector3d TetherElement::Ff() const  {
-		return - m_drag_f *  (m_dX.cwiseAbs().array() * m_dX.array()).matrix();
+		return - m_drag_f * (m_dX.cwiseAbs().array() * m_dX.array()).matrix();
 	}
 
 	Eigen::Vector3d TetherElement::Ft_prev() const {
 		if (m_previous != nullptr)
-			return m_length_prev_PID.Cmd() * (m_previous->Position() - Position()) / PreviousLength();
+			return - m_length_prev_PID.Cmd() * (m_previous->Position() - Position()) / PreviousLength();
 		else
 			return Eigen::Vector3d::Zero(3);
 	}
 
 	Eigen::Vector3d TetherElement::Ft_next() const {
 		if (m_next != nullptr)
-			return m_length_next_PID.Cmd() * (m_next->Position() - Position()) / NextLength();
+			return - m_length_next_PID.Cmd() * (m_next->Position() - Position()) / NextLength();
 		else
 			return Eigen::Vector3d::Zero(3);
 	}
@@ -130,11 +126,11 @@ namespace tether {
 		return force;
 	}
 
-	void TetherElement::Step(double h) {
+	void TetherElement::Step(const std::double_t h) {
 		if ((m_previous != nullptr) && (m_next != nullptr)) {
 			// Updating PID
-			m_length_prev_PID.Update(PreviousLength() - m_length, std::chrono::duration<double>(h));
-			m_length_next_PID.Update(NextLength() - m_length, std::chrono::duration<double>(h));
+			m_length_prev_PID.Update(PreviousLength() - m_length, std::chrono::duration<std::double_t>(h * 1000));
+			m_length_next_PID.Update(NextLength() - m_length, std::chrono::duration<std::double_t>(h * 1000));
 
 			// Computing next state using Euler's integration
 			m_dX += h * Acceleration();
