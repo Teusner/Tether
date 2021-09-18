@@ -1,10 +1,10 @@
 #include "tether/TetherElement.hpp"
 #include "tether/constants.hpp"
+#include "tether/PID.hpp"
 
 #include <chrono>
 #include <memory>
 
-#include <ignition/math6/ignition/math/PID.hh>
 #include <eigen3/Eigen/Dense>
 
 
@@ -45,7 +45,7 @@ namespace tether {
 		return m_length;
 	}
 
-	void TetherElement::SetPID(const ignition::math::PID &length_pid) {
+	void TetherElement::SetPID(const PID &length_pid) {
 		m_length_prev_PID = length_pid;
 		m_length_next_PID = length_pid;
 	}

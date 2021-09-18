@@ -9,6 +9,9 @@
 
 #include <Eigen/Dense>
 
+#include <gsl/gsl_vector.h>
+#include <gsl/gsl_multiroots.h>
+
 #include "tether/TetherElement.hpp"
 
 namespace tether {
@@ -88,5 +91,8 @@ namespace tether {
 
 		/// \brief Pointer to the next TetherElement
 		private: std::shared_ptr<TetherElement> m_tail;
+
+		private: int GSLCatenary(const gsl_vector *p, void *params, gsl_vector *f);
+		// private: void SolveCatenary(double &c1, double &c2, double &c3);
 	};
 };
