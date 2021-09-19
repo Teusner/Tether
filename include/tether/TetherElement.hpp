@@ -165,6 +165,14 @@ namespace tether {
 		public: void Step(const std::double_t h);
 
 
+		/// \brief the mass of the TetherElement
+		private: std::double_t m_mass;
+
+		/// \brief The volume of the TetherElement
+		private: std::double_t m_volume;
+
+		/// The length of the adjacents links
+		private: std::double_t m_length;
 
 		/// \brief State of the TetherElement
 		/// The State of the TetherElement is X = [x, y, z]
@@ -175,15 +183,6 @@ namespace tether {
 
 		/// \brief Two-time derivative state of the TetherElement
 		private: Eigen::Vector3d m_ddX = Eigen::Vector3d::Zero(3);
-
-		/// \brief the mass of the TetherElement
-		private: std::double_t m_mass;
-
-		/// The length of the adjacents links
-		private: std::double_t m_length;
-
-		/// \brief The volume of the TetherElement
-		private: std::double_t m_volume;
 
 		/// \brief Pointer to the previous TetherElement
 		private: std::shared_ptr<TetherElement> m_previous = nullptr;

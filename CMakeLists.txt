@@ -3,9 +3,26 @@ project(Tether)
 
 set(CMAKE_CXX_STANDARD 17)
 
-find_package(ignition-math6 REQUIRED)
+################################################################################
+# Looking for IBEX
+################################################################################
 
-find_package (Eigen3 3.3 REQUIRED NO_MODULE)
+	find_package(IBEX REQUIRED)
+	ibex_init_common() # IBEX should have installed this function
+	message(STATUS "Found IBEX version ${IBEX_VERSION}")
+
+	find_package(CODAC REQUIRED)
+	message(STATUS "Found Tubex version ${TUBEX_VERSION}")
+
+
+################################################################################
+# Looking for Eigen3
+################################################################################
+
+	find_package(Eigen3 REQUIRED NO_MODULE)
+	message(STATUS "Found Eigen3 version ${EIGEN3_VERSION}")
+	add_definitions(${EIGEN3_DEFINITIONS})
+	include_directories(${EIGEN3_INCLUDE_DIRS})
 
 find_package(GSL REQUIRED)
 
@@ -37,6 +54,10 @@ target_link_libraries(Tether TetherElement Eigen3::Eigen PID GSL::gsl)
 add_library(vtkTetherFigure src/vtkTetherFigure.cpp)
 target_include_directories(vtkTetherFigure PUBLIC include)
 target_link_libraries(vtkTetherFigure TetherElement Eigen3::Eigen ${VTK_LIBRARIES})
+
+add_library(CtcTether src/CtcTether)
+target_include_directories(CtcTether PUBLIC include)
+target_link_libraries(CtcTether Tether Ibex::ibex)
 
 
 add_subdirectory(examples)
