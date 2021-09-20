@@ -1,4 +1,4 @@
-#include "tether/Tether.hpp"
+#include "Tether.hpp"
 
 #include <cmath>
 #include <cstddef>

@@ -1,4 +1,4 @@
-#include "tether/vtkTetherFigure.hpp"
+#include "vtkTetherFigure.hpp"
 
 #include <vtkAnimationCue.h>
 #include <vtkRenderWindow.h>

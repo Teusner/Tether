@@ -1,5 +1,5 @@
 //! [example]
-#include "tether/TetherElement.hpp"
+#include "TetherElement.hpp"
 
 #include <cstdlib>
 #include <iostream>

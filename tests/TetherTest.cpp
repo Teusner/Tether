@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "tether/Tether.hpp"
+#include "Tether.hpp"
 
 #include <math.h>
 #include <memory>

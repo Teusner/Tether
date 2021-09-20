@@ -1,6 +1,6 @@
-#include "tether/TetherElement.hpp"
-#include "tether/constants.hpp"
-#include "tether/PID.hpp"
+#include "TetherElement.hpp"
+#include "constants.hpp"
+#include "PID.hpp"
 
 #include <chrono>
 #include <memory>

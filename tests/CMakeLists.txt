@@ -12,12 +12,12 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(TetherElementTest TetherElementTest.cpp)
-target_include_directories(TetherElementTest PUBLIC ../include)
+target_include_directories(TetherElementTest PUBLIC ../src/core)
 target_link_libraries(TetherElementTest gtest_main TetherElement)
 add_test(NAME tether_element_test COMMAND TetherElementTest)
 
 add_executable(TetherTest TetherTest.cpp)
-target_include_directories(TetherTest PUBLIC ../include)
+target_include_directories(TetherTest PUBLIC ../src/core)
 target_link_libraries(TetherTest gtest_main Tether)
 add_test(NAME tether_test COMMAND TetherTest)
 

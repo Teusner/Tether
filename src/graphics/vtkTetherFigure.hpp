@@ -1,7 +1,7 @@
 #pragma once
 
-#include "tether/Tether.hpp"
-#include "tether/TetherElement.hpp"
+#include "Tether.hpp"
+#include "TetherElement.hpp"
 
 #include <map>
 

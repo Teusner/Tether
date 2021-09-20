@@ -40,26 +40,7 @@ find_package(VTK COMPONENTS
 
 include(${VTK_USE_FILE})
 
-add_library(PID src/PID.cpp)
-target_include_directories(PID PUBLIC include)
-
-add_library(TetherElement src/TetherElement.cpp) 
-target_include_directories(TetherElement PUBLIC include)
-target_link_libraries(TetherElement Eigen3::Eigen ${VTK_LIBRARIES} PID)
-
-add_library(Tether src/Tether.cpp)
-target_include_directories(Tether PUBLIC include)
-target_link_libraries(Tether TetherElement Eigen3::Eigen PID GSL::gsl)
-
-add_library(vtkTetherFigure src/vtkTetherFigure.cpp)
-target_include_directories(vtkTetherFigure PUBLIC include)
-target_link_libraries(vtkTetherFigure TetherElement Eigen3::Eigen ${VTK_LIBRARIES})
-
-add_library(CtcTether src/CtcTether)
-target_include_directories(CtcTether PUBLIC include)
-target_link_libraries(CtcTether Tether Ibex::ibex)
-
-
+add_subdirectory(src)
 add_subdirectory(examples)
 add_subdirectory(tests)
 

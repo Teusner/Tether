@@ -8,7 +8,7 @@
 #include <math.h>
 #include <string>
 
-#include "tether/PID.hpp"
+#include "PID.hpp"
 
 #include <Eigen/Dense>
 

@@ -1,5 +1,5 @@
-#include "tether/Tether.hpp"
-#include "tether/vtkTetherFigure.hpp"
+#include "Tether.hpp"
+#include "vtkTetherFigure.hpp"
 
 #include <chrono>
 #include <thread>
