@@ -15,7 +15,7 @@ int main(int, char*[]) {
     vibes::beginDrawing();
 
     tether::VIBesTetherFigure fig(t);
-
+    fig.ShowEllipse();
     fig.ShowTether();
     vibes::endDrawing();
 
