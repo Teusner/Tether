@@ -1,3 +1,5 @@
+/// \file TetherExample.cpp
+/// Tether basic example
 //! [example]
 #include "Tether.hpp"
 #include "TetherElement.hpp"
