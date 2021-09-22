@@ -29,7 +29,7 @@ namespace tether {
 	/// Here is a basic example of Tether use. It instanciate a Tether with some parameters,
 	/// and show how to access these parameters through methods.
     ///
-    /// \snippet examples/TetherExample.cpp example
+    /// \snippet examples/core/TetherExample.cpp example
 	class Tether {
 		/// \brief Constructor, Tether with length and a number of TetherElements
 		///
