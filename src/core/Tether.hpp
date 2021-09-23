@@ -93,6 +93,6 @@ namespace tether {
 		private: std::shared_ptr<TetherElement> m_tail;
 
 		private: int GSLCatenary(const gsl_vector *p, void *params, gsl_vector *f);
-		// private: void SolveCatenary(double &c1, double &c2, double &c3);
+		private: void SolveCatenary(double &c1, double &c2, double &c3);
 	};
 };

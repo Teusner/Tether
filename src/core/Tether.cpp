@@ -98,6 +98,10 @@ namespace tether {
 		tether_element->Step(h);
 	}
 
+	/// Solution seems to be here : https://stackoverflow.com/questions/13074756/how-to-avoid-static-member-function-when-using-gsl-with-c/18181494#18181494
+	/// Using lambdas to give parameters : https://stackoverflow.com/questions/19450198/calling-gsl-function-inside-a-class-in-a-shared-library
+	/// Using opaque ... : https://stackoverflow.com/questions/47050842/c-class-member-function-to-gsl-ode-solver
+
 	int Tether::GSLCatenary(const gsl_vector *p, void *params, gsl_vector *f) {
 		const double c1 = gsl_vector_get(p, 0);
 		const double c2 = gsl_vector_get(p, 1);
@@ -128,31 +132,40 @@ namespace tether {
 
 	// 	const size_t n = 3;
 	// 	struct rparams p = {1.0};
-	// 	gsl_multiroot_function f = {&Tether::GSLCatenary, n, &p};
-	// 	gsl_vector *x = gsl_vector_alloc (n);
 
-	// 	gsl_vector_set (x, 0, 1);
-	// 	gsl_vector_set (x, 1, - (Head()->X() + Tail()->X()) / 2);
-	// 	gsl_vector_set (x, 2, (Head()->Y() + Tail()->Y()) / 2);
+	// 	gsl_function_pp Fp(std::bind(&Tether::GSLCatenary, &(*this),  std::placeholders::_1));
+	// 	gsl_function *F = static_cast<gsl_function*>(&Fp);
 
-	// 	T = gsl_multiroot_fsolver_hybrids;
-	// 	s = gsl_multiroot_fsolver_alloc (T, 3);
-	// 	gsl_multiroot_fsolver_set (s, &f, x);
+	// 	// Tether* ptr2 = this;
+	// 	// auto ptr = [=](int x)->int{return ptr2->GSLCatenary(x, n, p);};
+	// 	// gsl_function_pp<decltype(ptr)> Fp(ptr);     
+	// 	// gsl_function *F = static_cast<gsl_function*>(&Fp);   
+		
+	// 	// gsl_multiroot_function f {&F, n, p};
+	// 	// gsl_vector *x = gsl_vector_alloc (n);
 
-	// 	do {
-	// 		iter++;
-	// 		status = gsl_multiroot_fsolver_iterate (s);
-	// 		if (status)   /* check if solver is stuck */
-	// 			break;
-	// 		status = gsl_multiroot_test_residual (s->f, 1e-7);
-	// 	}
-	// 	while (status == GSL_CONTINUE && iter < 1000);
+	// 	// gsl_vector_set (x, 0, 1);
+	// 	// gsl_vector_set (x, 1, - (Head()->X() + Tail()->X()) / 2);
+	// 	// gsl_vector_set (x, 2, (Head()->Y() + Tail()->Y()) / 2);
 
-	// 	c1 = gsl_vector_get (s->x, 0);
-	// 	c2 = gsl_vector_get (s->x, 1);
-	// 	c3 = gsl_vector_get (s->x, 2);
+	// 	// T = gsl_multiroot_fsolver_hybrids;
+	// 	// s = gsl_multiroot_fsolver_alloc (T, 3);
+	// 	// gsl_multiroot_fsolver_set (s, &f, x);
 
-	// 	gsl_multiroot_fsolver_free (s);
-	// 	gsl_vector_free (x);
+	// 	// do {
+	// 	// 	iter++;
+	// 	// 	status = gsl_multiroot_fsolver_iterate (s);
+	// 	// 	if (status)   /* check if solver is stuck */
+	// 	// 		break;
+	// 	// 	status = gsl_multiroot_test_residual (s->f, 1e-7);
+	// 	// }
+	// 	// while (status == GSL_CONTINUE && iter < 1000);
+
+	// 	// c1 = gsl_vector_get (s->x, 0);
+	// 	// c2 = gsl_vector_get (s->x, 1);
+	// 	// c3 = gsl_vector_get (s->x, 2);
+
+	// 	// gsl_multiroot_fsolver_free (s);
+	// 	// gsl_vector_free (x);
 	// }
 }
