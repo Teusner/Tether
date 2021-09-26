@@ -121,16 +121,15 @@ namespace tether {
 				}
 	};
 
-
 	int Tether::GSLCatenary(const gsl_vector *p, void *params, gsl_vector *f) {
 		const double c1 = gsl_vector_get(p, 0);
 		const double c2 = gsl_vector_get(p, 1);
 		const double c3 = gsl_vector_get(p, 2);
 
-		const double rmax = std::sqrt(std::pow(Tail()->X() - Head()->X(), 2) + std::pow(Tail()->X() - Head()->X(), 2));
+		const double rmax = std::sqrt(std::pow(Tail()->X() - Head()->X(), 2) + std::pow(Tail()->Z() - Head()->Z(), 2));
 		const double eqn1 = c1 * (std::sinh((rmax + c2) / c1) - std::sinh((c2) / c1)) - m_length;
-		const double eqn2 = c1 * std::cosh((c2) / c1) + c3 - Head()->Y();
-		const double eqn3 = c1 * std::cosh((rmax + c2) / c1) + c3 - Tail()->Y();
+		const double eqn2 = c1 * std::cosh((c2) / c1) + c3 - Head()->Z();
+		const double eqn3 = c1 * std::cosh((rmax + c2) / c1) + c3 - Tail()->Z();
 
 		gsl_vector_set(f, 0, eqn1);
 		gsl_vector_set(f, 1, eqn2);
@@ -174,8 +173,6 @@ namespace tether {
 		c1 = gsl_vector_get (s->x, 0);
 		c2 = gsl_vector_get (s->x, 1);
 		c3 = gsl_vector_get (s->x, 2);
-
-		std::cout << c1 << " " << c2 << " " << c3 << std::endl;
 
 		gsl_multiroot_fsolver_free (s);
 		gsl_vector_free (x);
