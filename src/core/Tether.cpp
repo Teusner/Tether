@@ -144,37 +144,36 @@ namespace tether {
 		const std::size_t n = 3;
 
 		int status;
-		size_t i, iter = 0;
+		std::size_t iter = 0;
 
 		auto ptr = [=](const gsl_vector *x, void *params, gsl_vector *f)->int{return this->GSLCatenary(x, params, f);};
 		gsl_multiroot_function_pp<decltype(ptr)> Fp(ptr);
 		gsl_multiroot_function *F = static_cast<gsl_multiroot_function*>(&Fp); 
 		
-		// gsl_multiroot_function f {F, n, p};
-		gsl_vector *x = gsl_vector_alloc (n);
+		gsl_vector *x = gsl_vector_alloc(n);
 
-		gsl_vector_set (x, 0, 1);
-		gsl_vector_set (x, 1, - (Head()->X() + Tail()->X()) / 2);
-		gsl_vector_set (x, 2, (Head()->Y() + Tail()->Y()) / 2);
+		gsl_vector_set(x, 0, 1);
+		gsl_vector_set(x, 1, - (Head()->X() + Tail()->X()) / 2);
+		gsl_vector_set(x, 2, (Head()->Y() + Tail()->Y()) / 2);
 
 		T = gsl_multiroot_fsolver_hybrids;
-		s = gsl_multiroot_fsolver_alloc (T, n);
-		gsl_multiroot_fsolver_set (s, F, x);
+		s = gsl_multiroot_fsolver_alloc(T, n);
+		gsl_multiroot_fsolver_set(s, F, x);
 
 		do {
 			iter++;
-			status = gsl_multiroot_fsolver_iterate (s);
+			status = gsl_multiroot_fsolver_iterate(s);
 			if (status)   /* check if solver is stuck */
 				break;
-			status = gsl_multiroot_test_residual (s->f, 1e-7);
+			status = gsl_multiroot_test_residual(s->f, 1e-7);
 		}
 		while (status == GSL_CONTINUE && iter < 1000);
 
-		c1 = gsl_vector_get (s->x, 0);
-		c2 = gsl_vector_get (s->x, 1);
-		c3 = gsl_vector_get (s->x, 2);
+		c1 = gsl_vector_get(s->x, 0);
+		c2 = gsl_vector_get(s->x, 1);
+		c3 = gsl_vector_get(s->x, 2);
 
-		gsl_multiroot_fsolver_free (s);
-		gsl_vector_free (x);
+		gsl_multiroot_fsolver_free(s);
+		gsl_vector_free(x);
 	}
 }
