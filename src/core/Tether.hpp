@@ -46,7 +46,7 @@ namespace tether {
 		public: Tether(std::double_t length, std::size_t n, Eigen::Vector3d Xhead, Eigen::Vector3d Xtail);
 
 		/// \brief Destructor
-		public: ~Tether() = default;
+		public: ~Tether();
 
 		/// \brief Tether number of TetherElement
 		/// \return The number of TetherElement in the Tether
@@ -94,6 +94,8 @@ namespace tether {
 
 		private: int GSLCatenary(const gsl_vector *p, void *params, gsl_vector *f);
 		private: void SolveCatenary();
+
+		private: gsl_multiroot_fsolver *s;
 
 		private: double c1;
 		private: double c2;

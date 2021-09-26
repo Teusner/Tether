@@ -67,6 +67,10 @@ namespace tether {
 		m_tail = next_tether_element;
 	}
 
+	Tether::~Tether() {
+		gsl_multiroot_fsolver_free(s);
+	}
+
 	std::size_t Tether::N() const {
 		return m_n;
 	}
@@ -139,27 +143,21 @@ namespace tether {
 	}
 
 	void Tether::SolveCatenary() {
-		const gsl_multiroot_fsolver_type *T;
-		gsl_multiroot_fsolver *s;
 		const std::size_t n = 3;
 
-		int status;
-		std::size_t iter = 0;
+		gsl_vector *x = gsl_vector_alloc(n);
+		gsl_vector_set(x, 0, 1);
+		gsl_vector_set(x, 1, - (Head()->X() + Tail()->X()) / 2);
+		gsl_vector_set(x, 2, (Head()->Z() + Tail()->Z()) / 2);
 
 		auto ptr = [=](const gsl_vector *x, void *params, gsl_vector *f)->int{return this->GSLCatenary(x, params, f);};
 		gsl_multiroot_function_pp<decltype(ptr)> Fp(ptr);
 		gsl_multiroot_function *F = static_cast<gsl_multiroot_function*>(&Fp); 
-		
-		gsl_vector *x = gsl_vector_alloc(n);
 
-		gsl_vector_set(x, 0, 1);
-		gsl_vector_set(x, 1, - (Head()->X() + Tail()->X()) / 2);
-		gsl_vector_set(x, 2, (Head()->Y() + Tail()->Y()) / 2);
-
-		T = gsl_multiroot_fsolver_hybrids;
-		s = gsl_multiroot_fsolver_alloc(T, n);
+		int status;
+		std::size_t iter = 0;
+		s = gsl_multiroot_fsolver_alloc(gsl_multiroot_fsolver_hybrids, n);
 		gsl_multiroot_fsolver_set(s, F, x);
-
 		do {
 			iter++;
 			status = gsl_multiroot_fsolver_iterate(s);
@@ -172,8 +170,6 @@ namespace tether {
 		c1 = gsl_vector_get(s->x, 0);
 		c2 = gsl_vector_get(s->x, 1);
 		c3 = gsl_vector_get(s->x, 2);
-
-		gsl_multiroot_fsolver_free(s);
 		gsl_vector_free(x);
 	}
 }
