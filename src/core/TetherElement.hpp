@@ -196,8 +196,8 @@ namespace tether {
 			Eigen::Vector3d Fr_next(std::double_t h);
 
 			// Behavioral Force PID on length and twist
-			PID m_length_prev_PID = PID(200.0, 0.0, 20.0);
-			PID m_length_next_PID = PID(200.0, 0.0, 20.0);
+			PID m_length_prev_PID = PID(30.0, 0.0, 2.0);
+			PID m_length_next_PID = PID(30.0, 0.0, 2.0);
 			PID m_twist_prev_PID;
 			PID m_twist_next_PID;
 

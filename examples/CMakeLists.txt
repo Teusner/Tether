@@ -17,6 +17,10 @@ add_executable(VIBesTetherFigureExample graphics/VIBesTetherFigureExample.cpp)
 target_include_directories(VIBesTetherFigureExample PUBLIC ../src/core ../src/graphics)
 target_link_libraries(VIBesTetherFigureExample Tether TetherElement vibes VIBesTetherFigure Ibex::ibex)
 
+add_executable(VIBesTetherFigureSimulationExample graphics/VIBesTetherFigureSimulationExample.cpp)
+target_include_directories(VIBesTetherFigureSimulationExample PUBLIC ../src/core ../src/graphics)
+target_link_libraries(VIBesTetherFigureSimulationExample Tether TetherElement vibes VIBesTetherFigure Ibex::ibex)
+
 add_executable(CtcTetherExample interval/CtcTetherExample.cpp)
 target_include_directories(CtcTetherExample PUBLIC ../src/interval ../src/graphics)
 target_link_libraries(CtcTetherExample PUBLIC Tether CtcTether vibes Ibex::ibex)
