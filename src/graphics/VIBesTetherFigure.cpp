@@ -33,6 +33,7 @@ namespace tether {
     }
 
     void VIBesTetherFigure::ShowTether() {
+        // Drawing the Tether
         std::size_t i = 1;
         std::shared_ptr<TetherElement> tether_element = m_tether->Head()->Next();
         double theta = M_PI_2 + std::atan2(tether_element->Z() - m_tether->Head()->Z(), tether_element->X() - m_tether->Head()->X());
