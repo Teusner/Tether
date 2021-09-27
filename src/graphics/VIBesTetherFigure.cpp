@@ -19,13 +19,8 @@ namespace tether {
         m_radius = 0.1;
     }
 
-    VIBesTetherFigure::VIBesTetherFigure(std::shared_ptr<Tether> tether) {
+    VIBesTetherFigure::VIBesTetherFigure(std::shared_ptr<Tether> tether) : VIBesTetherFigure() {
         m_tether = tether;
-        m_head_tether_element_color = "#27ae60[#27ae60]";
-        m_tail_tether_element_color = "#c0392b[#c0392b]";
-        m_tether_color = "#f1c40f[#f1c40f]";
-        m_ellipse_color = "#3498db[#2980b9]";
-        m_radius = 0.15;
     }
 
     void VIBesTetherFigure::AddTether(std::shared_ptr<Tether> tether) {
