@@ -1,6 +1,9 @@
 #include "VIBesTetherFigure.hpp"
-#include <ibex.h>
 #include "vibes.hpp"
+
+#include <map>
+#include <string>
+#include <ibex.h>
 
 using namespace tether;
 
@@ -15,8 +18,10 @@ int main(int, char*[]) {
     vibes::beginDrawing();
 
     tether::VIBesTetherFigure fig(t);
-    fig.ShowEllipse();
+    // fig.ShowEllipse();
     fig.ShowTether();
+    vibes::axisLimits(-2.5,7.5, -7.5, 2.5);
+    vibes::setFigureProperties(vibesParams("x", 100, "y", 100, "width", 600, "height", 600));
     vibes::endDrawing();
 
     return EXIT_SUCCESS;

@@ -16,7 +16,7 @@ namespace tether {
         m_tail_tether_element_color = "#c0392b[#c0392b]";
         m_tether_color = "#f1c40f[#f1c40f]";
         m_ellipse_color = "#3498db[#2980b9]";
-        m_radius = 0.15;
+        m_radius = 0.1;
     }
 
     VIBesTetherFigure::VIBesTetherFigure(std::shared_ptr<Tether> tether) {
@@ -33,31 +33,29 @@ namespace tether {
     }
 
     void VIBesTetherFigure::ShowTether() {
-        // Showing the Tether
-        std::shared_ptr<TetherElement> tether_element = m_tether->Head();
-        std::vector<double> tether_x = {tether_element->X()};
-        std::vector<double> tether_y = {tether_element->Z() + m_radius};
-        while (tether_element != m_tether->Tail()) {
+        std::size_t i = 1;
+        std::shared_ptr<TetherElement> tether_element = m_tether->Head()->Next();
+        double theta = M_PI_2 + std::atan2(tether_element->Z() - m_tether->Head()->Z(), tether_element->X() - m_tether->Head()->X());
+        std::vector<double> tether_x = {m_tether->Head()->X() + m_radius * std::cos(theta), m_tether->Head()->X() - m_radius * std::cos(theta)};
+        std::vector<double> tether_y = {m_tether->Tail()->Z() + m_radius * std::sin(theta), m_tether->Tail()->Z() - m_radius * std::sin(theta)};
+        while (tether_element->Next() != nullptr) {
+            theta = M_PI_2 + 0.5 * (std::atan2(tether_element->Next()->Z() - tether_element->Z(), tether_element->Next()->X() - tether_element->X()) + std::atan2(tether_element->Z() - tether_element->Previous()->Z(), tether_element->X() - tether_element->Previous()->X()));
+            tether_x.insert(tether_x.begin() + i, tether_element->X() + m_radius * std::cos(theta));
+            tether_x.insert(tether_x.begin() + i + 1, tether_element->X() - m_radius * std::cos(theta));
+            tether_y.insert(tether_y.begin() + i, tether_element->Z() + m_radius * std::sin(theta));
+            tether_y.insert(tether_y.begin() + i + 1, tether_element->Z() - m_radius * std::sin(theta));
             tether_element = tether_element->Next();
-            tether_x.push_back(tether_element->X());
-            tether_y.push_back(tether_element->Z() + m_radius);
+            i++;
         }
-        tether_x.push_back(tether_element->X());
-        tether_y.push_back(tether_element->Z() - m_radius);
-        while (tether_element != m_tether->Head()) {
-            tether_element = tether_element->Previous();
-            tether_x.push_back(tether_element->X());
-            tether_y.push_back(tether_element->Z() - m_radius);
-        }
+        tether_x.insert(tether_x.begin() + i, tether_element->X() + m_radius * std::cos(theta));
+        tether_x.insert(tether_x.begin() + i + 1, tether_element->X() - m_radius * std::cos(theta));
+        tether_y.insert(tether_y.begin() + i, tether_element->Z() + m_radius * std::sin(theta));
+        tether_y.insert(tether_y.begin() + i + 1, tether_element->Z() - m_radius * std::sin(theta));
         vibes::drawPolygon(tether_x, tether_y, m_tether_color);
 
-        // Showing Head
-        Eigen::Vector3d head_position = m_tether->Head()->Position();
-        vibes::drawCircle(head_position[0], head_position[2], m_radius, m_head_tether_element_color);
-
-        // Showing Tail
-        Eigen::Vector3d tail_position = m_tether->Tail()->Position();
-        vibes::drawCircle(tail_position[0], tail_position[2], m_radius, m_tail_tether_element_color);
+        // Showing Head and tail
+        vibes::drawCircle(m_tether->Head()->X(), m_tether->Head()->Z(), m_radius, m_head_tether_element_color);
+        vibes::drawCircle(m_tether->Tail()->X(), m_tether->Tail()->Z(), m_radius, m_tail_tether_element_color);
     }
 
     void VIBesTetherFigure::ShowEllipse() {

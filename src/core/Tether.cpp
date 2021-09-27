@@ -13,34 +13,6 @@
 
 
 namespace tether {
-	Tether::Tether(std::double_t length, std::size_t n) {
-		m_length = length;
-		m_n = n;
-
-		// Temporary variables
-		double mass = 1;
-		double volume = 0.0001;
-		double l = length / (n-1);
-
-		Eigen::Vector3d X = Eigen::Vector3d::Zero(3);
-
-		std::shared_ptr<TetherElement> previous_tether_element = std::make_shared<TetherElement>(mass, volume, l, X);
-		std::shared_ptr<TetherElement> next_tether_element;
-		m_head = previous_tether_element;
-
-		for (std::size_t i = 1; i < m_n; i++) {
-			X[0] += 0.08;
-			X[1] = sin((double)i/15.);
-			next_tether_element = std::make_shared<TetherElement>(mass, volume, l, X);
-			previous_tether_element->SetNext(next_tether_element);
-			next_tether_element->SetPrevious(previous_tether_element);
-			previous_tether_element = next_tether_element;
-		}
-		m_tail = next_tether_element;
-
-		SolveCatenary();
-	}
-
 	Tether::Tether(std::double_t length, std::size_t n, Eigen::Vector3d Xhead, Eigen::Vector3d Xtail) {
 		m_length = length;
 		m_n = n;
@@ -50,21 +22,24 @@ namespace tether {
 		double volume = 0.001;
 		double l = length / (n-1);
 
-		Eigen::Vector3d X = Xhead;
+		m_head = std::make_shared<TetherElement>(mass, volume, l, Xhead);
+		m_tail = std::make_shared<TetherElement>(mass, volume, l, Xtail);
 
-		std::shared_ptr<TetherElement> previous_tether_element = std::make_shared<TetherElement>(mass, volume, l, X);
+		SolveCatenary();
+
+		std::shared_ptr<TetherElement> previous_tether_element = m_head;
 		std::shared_ptr<TetherElement> next_tether_element;
-		m_head = previous_tether_element;
-
-		for (std::size_t i = 1; i < m_n; i++) {
-			X[0] += 0.1;
-			X[1] = sin((double)i/15.);
+		for (std::size_t i = 1; i < n-1; i++) {
+			double r = c1 * std::asinh(i * m_length / (m_n * c1) + std::sinh(c2/c1)) - c2;
+			double angle = std::atan2(Xtail[1] - Xhead[1], Xtail[0] - Xhead[0]);
+			Eigen::Vector3d X(r * std::cos(angle) + Xhead[0], r * std::sin(angle) + Xhead[1], c1 * std::cosh((r + c2) / c1) + c3);
 			next_tether_element = std::make_shared<TetherElement>(mass, volume, l, X);
 			previous_tether_element->SetNext(next_tether_element);
 			next_tether_element->SetPrevious(previous_tether_element);
 			previous_tether_element = next_tether_element;
 		}
-		m_tail = next_tether_element;
+		next_tether_element->SetNext(m_tail);
+		m_tail->SetPrevious(next_tether_element);
 	}
 
 	Tether::~Tether() {
@@ -129,10 +104,11 @@ namespace tether {
 		const double c1 = gsl_vector_get(p, 0);
 		const double c2 = gsl_vector_get(p, 1);
 		const double c3 = gsl_vector_get(p, 2);
+		std::cout << c1 << " " << c2 << " " << c3 << std::endl;
 
-		const double rmax = std::sqrt(std::pow(Tail()->X() - Head()->X(), 2) + std::pow(Tail()->Z() - Head()->Z(), 2));
-		const double eqn1 = c1 * (std::sinh((rmax + c2) / c1) - std::sinh((c2) / c1)) - m_length;
-		const double eqn2 = c1 * std::cosh((c2) / c1) + c3 - Head()->Z();
+		const double rmax = std::sqrt(std::pow(Tail()->X() - Head()->X(), 2) + std::pow(Tail()->Y() - Head()->Y(), 2));
+		const double eqn1 = c1 * (std::sinh((rmax + c2) / c1) - std::sinh(c2 / c1)) - m_length;
+		const double eqn2 = c1 * std::cosh(c2 / c1) + c3 - Head()->Z();
 		const double eqn3 = c1 * std::cosh((rmax + c2) / c1) + c3 - Tail()->Z();
 
 		gsl_vector_set(f, 0, eqn1);
@@ -148,7 +124,7 @@ namespace tether {
 		gsl_vector *x = gsl_vector_alloc(n);
 		gsl_vector_set(x, 0, 1);
 		gsl_vector_set(x, 1, - (Head()->X() + Tail()->X()) / 2);
-		gsl_vector_set(x, 2, (Head()->Z() + Tail()->Z()) / 2);
+		gsl_vector_set(x, 2, ((Head()->Z() + Tail()->Z()) / 2 - m_length)/2);
 
 		auto ptr = [=](const gsl_vector *x, void *params, gsl_vector *f)->int{return this->GSLCatenary(x, params, f);};
 		gsl_multiroot_function_pp<decltype(ptr)> Fp(ptr);
@@ -170,6 +146,7 @@ namespace tether {
 		c1 = gsl_vector_get(s->x, 0);
 		c2 = gsl_vector_get(s->x, 1);
 		c3 = gsl_vector_get(s->x, 2);
+		std::cout << c1 << " " << c2 << " " << c3 << std::endl;
 		gsl_vector_free(x);
 	}
 }

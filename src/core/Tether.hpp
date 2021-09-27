@@ -35,7 +35,7 @@ namespace tether {
 		///
 		/// \param[in] length  The length of the Tether.
 		/// \param[in] n  The number of TetherElement used to simulate the Tether.
-		public: Tether(std::double_t length, std::size_t n);
+		public: Tether(std::double_t length, std::size_t n) : Tether(length, n, Eigen::Vector3d(0, 0, 0), Eigen::Vector3d(0.6*length, 0, 0)) {};
 
 		/// \brief Constructor, Tether with length, number of TetherElements and extremities positions
 		///
