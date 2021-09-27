@@ -17,11 +17,10 @@ int main(int, char*[]) {
     // Drawing ellipse and bounding box using VIBes Viewer
     vibes::beginDrawing();
 
-    tether::VIBesTetherFigure fig(t);
-    // fig.ShowEllipse();
+    tether::VIBesTetherFigure fig("Tether");
+    fig.AddTether(t);
     fig.ShowTether();
     vibes::axisLimits(-2.5,7.5, -7.5, 2.5);
-    vibes::setFigureProperties(vibesParams("x", 100, "y", 100, "width", 600, "height", 600));
     vibes::endDrawing();
 
     return EXIT_SUCCESS;

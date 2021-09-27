@@ -1,26 +1,23 @@
 #include "VIBesTetherFigure.hpp"
 #include "vibes.hpp"
 
-#include <Eigen/Dense>
-
 #include <cmath>
+#include <iostream>
 #include <memory>
 #include <string>
 
-#include <iostream>
-
 
 namespace tether {
-    VIBesTetherFigure::VIBesTetherFigure() {
+    VIBesTetherFigure::VIBesTetherFigure(std::string name) : TetherFigure(name) {
+        vibes::beginDrawing();
+        vibes::newFigure(m_name);
+        vibes::setFigureProperties(vibesParams("x", m_x, "y", m_y, "width", m_width, "height", m_height));
+
         m_head_tether_element_color = "#27ae60[#27ae60]";
         m_tail_tether_element_color = "#c0392b[#c0392b]";
         m_tether_color = "#f1c40f[#f1c40f]";
         m_ellipse_color = "#3498db[#2980b9]";
         m_radius = 0.1;
-    }
-
-    VIBesTetherFigure::VIBesTetherFigure(std::shared_ptr<Tether> tether) : VIBesTetherFigure() {
-        m_tether = tether;
     }
 
     void VIBesTetherFigure::AddTether(std::shared_ptr<Tether> tether) {
@@ -61,7 +58,6 @@ namespace tether {
         double theta = std::atan2(m_tether->Tail()->Z() - m_tether->Head()->Z(), m_tether->Tail()->X() - m_tether->Head()->X());
         double cx = (m_tether->Head()->X() + m_tether->Tail()->X()) / 2.;
         double cy = (m_tether->Head()->Z() + m_tether->Tail()->Z()) / 2.;
-
         vibes::drawEllipse(cx, cy, a, b, theta, m_ellipse_color);
     }
-}
+} // namespace tether
