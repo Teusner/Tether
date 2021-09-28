@@ -104,7 +104,6 @@ namespace tether {
 		const double c1 = gsl_vector_get(p, 0);
 		const double c2 = gsl_vector_get(p, 1);
 		const double c3 = gsl_vector_get(p, 2);
-		std::cout << c1 << " " << c2 << " " << c3 << std::endl;
 
 		const double rmax = std::sqrt(std::pow(Tail()->X() - Head()->X(), 2) + std::pow(Tail()->Y() - Head()->Y(), 2));
 		const double eqn1 = c1 * (std::sinh((rmax + c2) / c1) - std::sinh(c2 / c1)) - m_length;
@@ -146,7 +145,6 @@ namespace tether {
 		c1 = gsl_vector_get(s->x, 0);
 		c2 = gsl_vector_get(s->x, 1);
 		c3 = gsl_vector_get(s->x, 2);
-		std::cout << c1 << " " << c2 << " " << c3 << std::endl;
 		gsl_vector_free(x);
 	}
 }

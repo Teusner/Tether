@@ -20,7 +20,7 @@ int main(int, char*[]) {
     tether::VIBesTetherFigure fig("Tether");
     fig.AddTether(t);
     fig.ShowTether();
-    vibes::axisLimits(-2.5,7.5, -7.5, 2.5);
+    // vibes::axisLimits(-2.5,7.5, -7.5, 2.5);
     vibes::endDrawing();
 
     return EXIT_SUCCESS;

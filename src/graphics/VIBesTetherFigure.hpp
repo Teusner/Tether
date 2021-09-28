@@ -18,6 +18,8 @@ namespace tether {
 		public: void ShowTether();
 		public: void ShowEllipse();
 
+		void Axis() const;
+
 		private: std::shared_ptr<Tether> m_tether;
         private: std::string m_tether_color;
         private: std::string m_head_tether_element_color;

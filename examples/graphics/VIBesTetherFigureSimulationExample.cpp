@@ -21,7 +21,7 @@ int main(int, char*[]) {
     fig.AddTether(t);
     for (std::size_t i = 0; i < 5000; i++) {
         t->Step(0.01);
-        vibes::axisLimits(-2.5,7.5, -7.5, 2.5);
+        // vibes::axisLimits(-2.5,7.5, -7.5, 2.5);
         fig.ShowTether();
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
