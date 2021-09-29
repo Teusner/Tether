@@ -33,6 +33,7 @@ namespace tether {
     void VIBesTetherFigure::Axis() const {
         Eigen::Vector3d y = (m_tether->Tail()->Position() + m_tether->Head()->Position()) / 2.;
         vibes::axisLimits(y[0] - m_tether->Length() / 2., y[0] + m_tether->Length() / 2., y[2] - m_tether->Length() / 2., y[2] + m_tether->Length() / 2.);
+        vibes::setFigureProperties(vibesParams("x", m_x, "y", m_y, "width", m_width, "height", m_height));
     }
 
     void VIBesTetherFigure::ShowTether() {
