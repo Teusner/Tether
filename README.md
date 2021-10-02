@@ -8,6 +8,8 @@ Tethers are essential in the field of underwater robotics. Indeed, they allow th
 
 This project provide a Tether simulation to try these objects in different configuration, and to simulate forces applied to bounded objects at the tether extremities.
 
+![Tether](docs/images/Tether.png)
+
 ## Interval Analysis
 
 This repository provide an optimal contractor around a Tether based on its length and the position of its extremities. This contractor is able to contract a set enclosing the Tether which can be usefull to get an area where navigation is not possible.
