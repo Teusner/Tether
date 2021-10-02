@@ -24,7 +24,7 @@ sudo at install -y libgsl libvtk7-dev doxygen
 
 ### Ibex-lib
 
-The interval analysis part of this project is build on [ibex-lib](https://github.com/ibex-team/ibex-lib). Installation instructions are available [here](http://www.ibex-lib.org/doc/install.html#standard-install).
+The interval analysis part of this project is build using [ibex-lib](https://github.com/ibex-team/ibex-lib). Installation instructions are available [here](http://www.ibex-lib.org/doc/install.html#standard-install).
 
 ### Graphic Viewer
 
