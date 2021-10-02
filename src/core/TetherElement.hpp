@@ -32,12 +32,15 @@ namespace tether {
     /// \snippet examples/core/TetherElementExample.cpp example
 	class TetherElement {
 
+		/// \name Definition
+      	/// @{
+
 		/// \brief Constructor, TetherElement with mass, volume and length
 		///
 		/// \param[in] mass  The mass of the TetherElement.
 		/// \param[in] length  The length between two TetherElements.
 		/// \param[in] volume  The volume of the TetherElement.
-		public: TetherElement(std::double_t mass, std::double_t volume, std::double_t length) : m_mass(mass), m_volume(volume), m_length(length) {};
+		public: explicit TetherElement(std::double_t mass, std::double_t volume, std::double_t length) : m_mass(mass), m_volume(volume), m_length(length) {};
 
 		/// \brief Constructor, TetherElement with mass, volume, length and an initial state
 		///
@@ -45,11 +48,14 @@ namespace tether {
 		/// \param[in] length  The length between two TetherElements.
 		/// \param[in] volume  The volume of the TetherElement.
 		/// \param[in] X0  The initial state of the TetherElement.
-		public: TetherElement(std::double_t mass, std::double_t volume, std::double_t length, Eigen::Vector3d X0) : m_mass(mass), m_volume(volume), m_length(length), m_X(X0) {};
+		public: explicit TetherElement(std::double_t mass, std::double_t volume, std::double_t length, Eigen::Vector3d X0) : m_mass(mass), m_volume(volume), m_length(length), m_X(X0) {};
 
 		/// \brief Default destructor of the TetherElement
 		public: ~TetherElement() = default;
 
+		/// @}
+		/// \name Accessing values
+      	/// @{
 
 		/// \brief Length getter
 		/// \return Length between the TetherElement and its neighbors
@@ -87,7 +93,6 @@ namespace tether {
 		/// \return The current TetherElement Acceleration
 		public: Eigen::Vector3d Acceleration() const;
 
-
 		/// \brief Previous TetherElement
 		/// \return Pointer to the previous TetherElement
 		public: std::shared_ptr<TetherElement> Previous() const;
@@ -104,6 +109,9 @@ namespace tether {
 		/// Set the next TetherElement pointer
 		public: std::double_t NextLength() const;
 
+		/// @}
+		/// \name Setting values
+		/// @{
 
 		/// \brief Previous TetherElement setter
 		/// Set the previous TetherElement pointer
@@ -113,6 +121,9 @@ namespace tether {
 		/// Set the next TetherElement pointer
 		public: void SetNext(const std::shared_ptr<TetherElement> next);
 
+		/// @}
+		/// \name Forces
+		/// @{
 
 		/// \brief Gravity force
 		/// Compute the gravity force applied on the TetherElement
@@ -155,6 +166,9 @@ namespace tether {
 		/// \param[in] length_pid the PID used for length
 		public: void SetPID(const PID &length_pid);
 
+		/// @}
+		/// \name Simulation
+		/// @{
 
 		/// \brief Step method
 		///
@@ -164,6 +178,7 @@ namespace tether {
 		/// \param[in] h integration time in seconds
 		public: void Step(const std::double_t h);
 
+		/// @}
 
 		/// \brief the mass of the TetherElement
 		private: std::double_t m_mass;
@@ -175,13 +190,14 @@ namespace tether {
 		private: std::double_t m_length;
 
 		/// \brief State of the TetherElement
-		/// The State of the TetherElement is X = [x, y, z]
 		private: Eigen::Vector3d m_X = Eigen::Vector3d::Zero(3);
 
 		/// \brief Derivative state of the TetherElement
+		/// The derivative State of the TetherElement is dX = [dx, dy, dz]
 		private: Eigen::Vector3d m_dX = Eigen::Vector3d::Zero(3);
 
 		/// \brief Two-time derivative state of the TetherElement
+		/// The derivative State of the TetherElement is ddX = [ddx, ddy, ddz]
 		private: Eigen::Vector3d m_ddX = Eigen::Vector3d::Zero(3);
 
 		/// \brief Pointer to the previous TetherElement
