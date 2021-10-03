@@ -1,0 +1,432 @@
+\hypertarget{classtether_1_1TetherElement}{}\doxysection{tether\+::Tether\+Element Class Reference}
+\label{classtether_1_1TetherElement}\index{tether::TetherElement@{tether::TetherElement}}
+
+
+\mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} to hold the state of a discretized tether element.  
+
+
+
+
+{\ttfamily \#include $<$tether/\+Tether\+Element.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{Indent}\textbf{ Definition}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtether_1_1TetherElement_a431286dfc2ec70b37e2a2ab551ff0e44}{Tether\+Element}} (std\+::double\+\_\+t mass, std\+::double\+\_\+t volume, std\+::double\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Constructor, \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} with mass, volume and length. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtether_1_1TetherElement_a45391c05d76baea707e6ea8dec06f751}{Tether\+Element}} (std\+::double\+\_\+t mass, std\+::double\+\_\+t volume, std\+::double\+\_\+t length, Eigen\+::\+Vector3d X0)
+\begin{DoxyCompactList}\small\item\em Constructor, \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} with mass, volume, length and an initial state. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtether_1_1TetherElement_a0e4ab3643340bf53fd58c3f0fe38eee2}\label{classtether_1_1TetherElement_a0e4ab3643340bf53fd58c3f0fe38eee2}} 
+{\bfseries $\sim$\+Tether\+Element} ()=default
+\begin{DoxyCompactList}\small\item\em Default destructor of the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Accessing values}\par
+\begin{DoxyCompactItemize}
+\item 
+std\+::double\+\_\+t \mbox{\hyperlink{classtether_1_1TetherElement_afcff39a06db0720704750229c58edf8d}{Length}} () const
+\begin{DoxyCompactList}\small\item\em Length getter. \end{DoxyCompactList}\item 
+std\+::double\+\_\+t \mbox{\hyperlink{classtether_1_1TetherElement_a89eac5d822ed9c1f698fc5f36e475875}{Mass}} () const
+\begin{DoxyCompactList}\small\item\em Mass getter. \end{DoxyCompactList}\item 
+std\+::double\+\_\+t \mbox{\hyperlink{classtether_1_1TetherElement_a334014151017f656d4e833894b3e3d4b}{Volume}} () const
+\begin{DoxyCompactList}\small\item\em Volume getter. \end{DoxyCompactList}\item 
+std\+::double\+\_\+t \mbox{\hyperlink{classtether_1_1TetherElement_ac71a54e4be990083ea2e22ab2bfa13d1}{X}} () const
+\begin{DoxyCompactList}\small\item\em x-\/axis coordinate getter \end{DoxyCompactList}\item 
+std\+::double\+\_\+t \mbox{\hyperlink{classtether_1_1TetherElement_aa23e0ac22a0a3c6d952a01b59ce7147e}{Y}} () const
+\begin{DoxyCompactList}\small\item\em y-\/axis coordinate getter \end{DoxyCompactList}\item 
+std\+::double\+\_\+t \mbox{\hyperlink{classtether_1_1TetherElement_acba25c822e91dbfeef86a5a0e653d80b}{Z}} () const
+\begin{DoxyCompactList}\small\item\em z-\/axis coordinate getter \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{classtether_1_1TetherElement_a882c2a01fa4bbf7e52096e11411f4927}{Position}} () const
+\begin{DoxyCompactList}\small\item\em Position getter. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{classtether_1_1TetherElement_a9673d596d06c3d8eb3d8ddb8e0089d21}{Velocity}} () const
+\begin{DoxyCompactList}\small\item\em Velocity getter. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{classtether_1_1TetherElement_a05416eb25093b96d05529aa315c469f8}{Acceleration}} () const
+\begin{DoxyCompactList}\small\item\em Acceleration getter. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $>$ \mbox{\hyperlink{classtether_1_1TetherElement_a10e9483005c2208a81cb19df1117daa1}{Previous}} () const
+\begin{DoxyCompactList}\small\item\em Previous \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $>$ \mbox{\hyperlink{classtether_1_1TetherElement_aa9751175a5971913041ac4d88a0eb7a3}{Next}} () const
+\begin{DoxyCompactList}\small\item\em Next \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtether_1_1TetherElement_a8dad83ba445ebdba43d116b81178ede5}\label{classtether_1_1TetherElement_a8dad83ba445ebdba43d116b81178ede5}} 
+std\+::double\+\_\+t {\bfseries Previous\+Length} () const
+\begin{DoxyCompactList}\small\item\em Previous \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} setter Set the previous \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtether_1_1TetherElement_a541589f066c2ba80d164fb33dde291e4}\label{classtether_1_1TetherElement_a541589f066c2ba80d164fb33dde291e4}} 
+std\+::double\+\_\+t {\bfseries Next\+Length} () const
+\begin{DoxyCompactList}\small\item\em Next \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} setter Set the next \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Setting values}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classtether_1_1TetherElement_a8c3e7ae1d74c612966983d71b3969ad3}\label{classtether_1_1TetherElement_a8c3e7ae1d74c612966983d71b3969ad3}} 
+void {\bfseries Set\+Previous} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $>$ previous)
+\begin{DoxyCompactList}\small\item\em Previous \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} setter Set the previous \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} pointer. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtether_1_1TetherElement_ab70f510c60760f453558d1ec52a0d856}\label{classtether_1_1TetherElement_ab70f510c60760f453558d1ec52a0d856}} 
+void {\bfseries Set\+Next} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $>$ next)
+\begin{DoxyCompactList}\small\item\em Next \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} setter Set the next \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Forces}\par
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{classtether_1_1TetherElement_a746f081514eed1ac2dbc1c01ca081db2}{Fg}} () const
+\begin{DoxyCompactList}\small\item\em Gravity force Compute the gravity force applied on the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $\mathbf{F_g} = - m \cdot \mathbf{g}$. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{classtether_1_1TetherElement_a87252eb93dd37bae094ed5deb3047773}{Fb}} () const
+\begin{DoxyCompactList}\small\item\em The buoyancy force Compute the buoyancy force applied on the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $\mathbf{F_b} = - \rho \cdot V \cdot \mathbf{g}$. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{classtether_1_1TetherElement_a92c976b9d0855c2f880e8a24c0fed752}{Ff}} () const
+\begin{DoxyCompactList}\small\item\em The hydrodynamic drag force Compute the hydrodynamic drag force applied on the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $\mathbf{F_f} = - f \cdot |\mathbf{V}| \cdot \mathbf{V}$. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{classtether_1_1TetherElement_a985ee5e433e4698ba06a9eab7319127c}{Ft\+\_\+prev}} () const
+\begin{DoxyCompactList}\small\item\em The previous behavioral force The previous force induced by the previous \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} on the current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. For this force a behavioral model based on a \mbox{\hyperlink{classtether_1_1PID}{PID}} corrector is purposed to reach a correct distance between the current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} and the previous one. \end{DoxyCompactList}\item 
+Eigen\+::\+Vector3d \mbox{\hyperlink{classtether_1_1TetherElement_a910d2b3dcd9c5bcfee71583bc0c5998f}{Ft\+\_\+next}} () const
+\begin{DoxyCompactList}\small\item\em The next behavioral force The next force induced by the next \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} on the current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. For this force a behavioral model based on a \mbox{\hyperlink{classtether_1_1PID}{PID}} corrector is purposed to reach a correct distance between the current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} and the next one. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtether_1_1TetherElement_add9497c65b0a3d482f55a5cac6e97fa6}{Set\+PID}} (const \mbox{\hyperlink{classtether_1_1PID}{PID}} \&length\+\_\+pid)
+\begin{DoxyCompactList}\small\item\em Set the \mbox{\hyperlink{classtether_1_1PID}{PID}} for the behavioral model Set the \mbox{\hyperlink{classtether_1_1PID}{PID}} used to compute the behavioral model of force generated by neighbors and applied on each \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Simulation}\par
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classtether_1_1TetherElement_a541a96e4a647e9327b6edb1b299fcfd4}{Step}} (const std\+::double\+\_\+t h)
+\begin{DoxyCompactList}\small\item\em Step method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} to hold the state of a discretized tether element. 
+
+\hypertarget{classtether_1_1TetherElement_autotoc_md7}{}\doxysubsubsection{ \+Doubly Linked List structure}\label{classtether_1_1TetherElement_autotoc_md7}
+\mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} has to be used as node in a doubly linked list to simulate a \mbox{\hyperlink{classtether_1_1Tether}{Tether}}. The idea is to set the previous and the next \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} using \mbox{\hyperlink{classtether_1_1TetherElement_a8c3e7ae1d74c612966983d71b3969ad3}{Tether\+Element\+::\+Set\+Previous}} and \mbox{\hyperlink{classtether_1_1TetherElement_ab70f510c60760f453558d1ec52a0d856}{Tether\+Element\+::\+Set\+Next}}\hypertarget{classtether_1_1TetherElement_autotoc_md8}{}\doxysubsubsection{Example}\label{classtether_1_1TetherElement_autotoc_md8}
+Here is a basic example of \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} use. It instanciate a \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} with some parameters, and show how to access these parameters through methods.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{TetherElement_8hpp}{TetherElement.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <cstdlib>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <Eigen/Dense>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using namespace }tether;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int}, \textcolor{keywordtype}{char}*[]) \{}
+\DoxyCodeLine{    \textcolor{comment}{// TetherElement parameters}}
+\DoxyCodeLine{    std::double\_t mass = 0.5;}
+\DoxyCodeLine{    std::double\_t volume = 0.1;}
+\DoxyCodeLine{    std::double\_t length = 0.02;}
+\DoxyCodeLine{    Eigen::Vector3d X0(1.0, 2.0, 3.0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Create a TetherElement}}
+\DoxyCodeLine{    \mbox{\hyperlink{classtether_1_1TetherElement_a431286dfc2ec70b37e2a2ab551ff0e44}{TetherElement}} tether\_element(mass, volume, length, X0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Accessing TetherElement parameters}}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}>> TetherElement parameters"{}} << std::endl;}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}mass \(\backslash\)t: "{}} << tether\_element.Mass() << std::endl;}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}volume \(\backslash\)t: "{}} << tether\_element.Volume() << std::endl;}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}length \(\backslash\)t: "{}} << tether\_element.Length() << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Accessing TetherElement state}}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}>> TetherElement state"{}} << std::endl;}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}x \(\backslash\)t: "{}} << tether\_element.X() << std::endl;}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}y \(\backslash\)t: "{}} << tether\_element.Y() << std::endl;}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}z \(\backslash\)t: "{}} << tether\_element.Z() << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Update the state from t to t + h}}
+\DoxyCodeLine{    std::double\_t h = 0.01;}
+\DoxyCodeLine{    tether\_element.Step(h);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a431286dfc2ec70b37e2a2ab551ff0e44}\label{classtether_1_1TetherElement_a431286dfc2ec70b37e2a2ab551ff0e44}} 
+\index{tether::TetherElement@{tether::TetherElement}!TetherElement@{TetherElement}}
+\index{TetherElement@{TetherElement}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{TetherElement()}{TetherElement()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily tether\+::\+Tether\+Element\+::\+Tether\+Element (\begin{DoxyParamCaption}\item[{std\+::double\+\_\+t}]{mass,  }\item[{std\+::double\+\_\+t}]{volume,  }\item[{std\+::double\+\_\+t}]{length }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor, \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} with mass, volume and length. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mass} & The mass of the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & The length between two Tether\+Elements. \\
+\hline
+\mbox{\texttt{ in}}  & {\em volume} & The volume of the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a45391c05d76baea707e6ea8dec06f751}\label{classtether_1_1TetherElement_a45391c05d76baea707e6ea8dec06f751}} 
+\index{tether::TetherElement@{tether::TetherElement}!TetherElement@{TetherElement}}
+\index{TetherElement@{TetherElement}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{TetherElement()}{TetherElement()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily tether\+::\+Tether\+Element\+::\+Tether\+Element (\begin{DoxyParamCaption}\item[{std\+::double\+\_\+t}]{mass,  }\item[{std\+::double\+\_\+t}]{volume,  }\item[{std\+::double\+\_\+t}]{length,  }\item[{Eigen\+::\+Vector3d}]{X0 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor, \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} with mass, volume, length and an initial state. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em mass} & The mass of the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em length} & The length between two Tether\+Elements. \\
+\hline
+\mbox{\texttt{ in}}  & {\em volume} & The volume of the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em X0} & The initial state of the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a05416eb25093b96d05529aa315c469f8}\label{classtether_1_1TetherElement_a05416eb25093b96d05529aa315c469f8}} 
+\index{tether::TetherElement@{tether::TetherElement}!Acceleration@{Acceleration}}
+\index{Acceleration@{Acceleration}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Acceleration()}{Acceleration()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d tether\+::\+Tether\+Element\+::\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Acceleration getter. 
+
+\begin{DoxyReturn}{Returns}
+The current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} Acceleration 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a87252eb93dd37bae094ed5deb3047773}\label{classtether_1_1TetherElement_a87252eb93dd37bae094ed5deb3047773}} 
+\index{tether::TetherElement@{tether::TetherElement}!Fb@{Fb}}
+\index{Fb@{Fb}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Fb()}{Fb()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d tether\+::\+Tether\+Element\+::\+Fb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+The buoyancy force Compute the buoyancy force applied on the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $\mathbf{F_b} = - \rho \cdot V \cdot \mathbf{g}$. 
+
+\begin{DoxyReturn}{Returns}
+The computed gravity force 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a92c976b9d0855c2f880e8a24c0fed752}\label{classtether_1_1TetherElement_a92c976b9d0855c2f880e8a24c0fed752}} 
+\index{tether::TetherElement@{tether::TetherElement}!Ff@{Ff}}
+\index{Ff@{Ff}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Ff()}{Ff()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d tether\+::\+Tether\+Element\+::\+Ff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+The hydrodynamic drag force Compute the hydrodynamic drag force applied on the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $\mathbf{F_f} = - f \cdot |\mathbf{V}| \cdot \mathbf{V}$. 
+
+\begin{DoxyReturn}{Returns}
+The computed gravity force 
+
+The hydrodynamic drag force applied to the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a746f081514eed1ac2dbc1c01ca081db2}\label{classtether_1_1TetherElement_a746f081514eed1ac2dbc1c01ca081db2}} 
+\index{tether::TetherElement@{tether::TetherElement}!Fg@{Fg}}
+\index{Fg@{Fg}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Fg()}{Fg()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d tether\+::\+Tether\+Element\+::\+Fg (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gravity force Compute the gravity force applied on the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $\mathbf{F_g} = - m \cdot \mathbf{g}$. 
+
+\begin{DoxyReturn}{Returns}
+The computed gravity force 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a910d2b3dcd9c5bcfee71583bc0c5998f}\label{classtether_1_1TetherElement_a910d2b3dcd9c5bcfee71583bc0c5998f}} 
+\index{tether::TetherElement@{tether::TetherElement}!Ft\_next@{Ft\_next}}
+\index{Ft\_next@{Ft\_next}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Ft\_next()}{Ft\_next()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d tether\+::\+Tether\+Element\+::\+Ft\+\_\+next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+The next behavioral force The next force induced by the next \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} on the current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. For this force a behavioral model based on a \mbox{\hyperlink{classtether_1_1PID}{PID}} corrector is purposed to reach a correct distance between the current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} and the next one. 
+
+\begin{DoxyReturn}{Returns}
+The next behavioral force ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a985ee5e433e4698ba06a9eab7319127c}\label{classtether_1_1TetherElement_a985ee5e433e4698ba06a9eab7319127c}} 
+\index{tether::TetherElement@{tether::TetherElement}!Ft\_prev@{Ft\_prev}}
+\index{Ft\_prev@{Ft\_prev}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Ft\_prev()}{Ft\_prev()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d tether\+::\+Tether\+Element\+::\+Ft\+\_\+prev (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+The previous behavioral force The previous force induced by the previous \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} on the current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. For this force a behavioral model based on a \mbox{\hyperlink{classtether_1_1PID}{PID}} corrector is purposed to reach a correct distance between the current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} and the previous one. 
+
+\begin{DoxyReturn}{Returns}
+The previous behavioral force ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_afcff39a06db0720704750229c58edf8d}\label{classtether_1_1TetherElement_afcff39a06db0720704750229c58edf8d}} 
+\index{tether::TetherElement@{tether::TetherElement}!Length@{Length}}
+\index{Length@{Length}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Length()}{Length()}}
+{\footnotesize\ttfamily std\+::double\+\_\+t tether\+::\+Tether\+Element\+::\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Length getter. 
+
+\begin{DoxyReturn}{Returns}
+Length between the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} and its neighbors 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a89eac5d822ed9c1f698fc5f36e475875}\label{classtether_1_1TetherElement_a89eac5d822ed9c1f698fc5f36e475875}} 
+\index{tether::TetherElement@{tether::TetherElement}!Mass@{Mass}}
+\index{Mass@{Mass}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Mass()}{Mass()}}
+{\footnotesize\ttfamily std\+::double\+\_\+t tether\+::\+Tether\+Element\+::\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Mass getter. 
+
+\begin{DoxyReturn}{Returns}
+Mass of the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_aa9751175a5971913041ac4d88a0eb7a3}\label{classtether_1_1TetherElement_aa9751175a5971913041ac4d88a0eb7a3}} 
+\index{tether::TetherElement@{tether::TetherElement}!Next@{Next}}
+\index{Next@{Next}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Next()}{Next()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $>$ tether\+::\+Tether\+Element\+::\+Next (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Next \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the next \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a882c2a01fa4bbf7e52096e11411f4927}\label{classtether_1_1TetherElement_a882c2a01fa4bbf7e52096e11411f4927}} 
+\index{tether::TetherElement@{tether::TetherElement}!Position@{Position}}
+\index{Position@{Position}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Position()}{Position()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d tether\+::\+Tether\+Element\+::\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Position getter. 
+
+\begin{DoxyReturn}{Returns}
+The current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} Position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a10e9483005c2208a81cb19df1117daa1}\label{classtether_1_1TetherElement_a10e9483005c2208a81cb19df1117daa1}} 
+\index{tether::TetherElement@{tether::TetherElement}!Previous@{Previous}}
+\index{Previous@{Previous}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Previous()}{Previous()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $>$ tether\+::\+Tether\+Element\+::\+Previous (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Previous \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the previous \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_add9497c65b0a3d482f55a5cac6e97fa6}\label{classtether_1_1TetherElement_add9497c65b0a3d482f55a5cac6e97fa6}} 
+\index{tether::TetherElement@{tether::TetherElement}!SetPID@{SetPID}}
+\index{SetPID@{SetPID}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{SetPID()}{SetPID()}}
+{\footnotesize\ttfamily void tether\+::\+Tether\+Element\+::\+Set\+PID (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classtether_1_1PID}{PID}} \&}]{length\+\_\+pid }\end{DoxyParamCaption})}
+
+
+
+Set the \mbox{\hyperlink{classtether_1_1PID}{PID}} for the behavioral model Set the \mbox{\hyperlink{classtether_1_1PID}{PID}} used to compute the behavioral model of force generated by neighbors and applied on each \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em length\+\_\+pid} & the \mbox{\hyperlink{classtether_1_1PID}{PID}} used for length \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a541a96e4a647e9327b6edb1b299fcfd4}\label{classtether_1_1TetherElement_a541a96e4a647e9327b6edb1b299fcfd4}} 
+\index{tether::TetherElement@{tether::TetherElement}!Step@{Step}}
+\index{Step@{Step}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Step()}{Step()}}
+{\footnotesize\ttfamily void tether\+::\+Tether\+Element\+::\+Step (\begin{DoxyParamCaption}\item[{const std\+::double\+\_\+t}]{h }\end{DoxyParamCaption})}
+
+
+
+Step method. 
+
+The method used to compute and update the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} state with the integration time-\/step h.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em h} & integration time in seconds \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a9673d596d06c3d8eb3d8ddb8e0089d21}\label{classtether_1_1TetherElement_a9673d596d06c3d8eb3d8ddb8e0089d21}} 
+\index{tether::TetherElement@{tether::TetherElement}!Velocity@{Velocity}}
+\index{Velocity@{Velocity}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Velocity()}{Velocity()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d tether\+::\+Tether\+Element\+::\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Velocity getter. 
+
+\begin{DoxyReturn}{Returns}
+The current \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} Velocity 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_a334014151017f656d4e833894b3e3d4b}\label{classtether_1_1TetherElement_a334014151017f656d4e833894b3e3d4b}} 
+\index{tether::TetherElement@{tether::TetherElement}!Volume@{Volume}}
+\index{Volume@{Volume}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Volume()}{Volume()}}
+{\footnotesize\ttfamily std\+::double\+\_\+t tether\+::\+Tether\+Element\+::\+Volume (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Volume getter. 
+
+\begin{DoxyReturn}{Returns}
+Volume of the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_ac71a54e4be990083ea2e22ab2bfa13d1}\label{classtether_1_1TetherElement_ac71a54e4be990083ea2e22ab2bfa13d1}} 
+\index{tether::TetherElement@{tether::TetherElement}!X@{X}}
+\index{X@{X}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{X()}{X()}}
+{\footnotesize\ttfamily std\+::double\+\_\+t tether\+::\+Tether\+Element\+::X (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+x-\/axis coordinate getter 
+
+\begin{DoxyReturn}{Returns}
+x-\/axis coordinate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_aa23e0ac22a0a3c6d952a01b59ce7147e}\label{classtether_1_1TetherElement_aa23e0ac22a0a3c6d952a01b59ce7147e}} 
+\index{tether::TetherElement@{tether::TetherElement}!Y@{Y}}
+\index{Y@{Y}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Y()}{Y()}}
+{\footnotesize\ttfamily std\+::double\+\_\+t tether\+::\+Tether\+Element\+::Y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+y-\/axis coordinate getter 
+
+\begin{DoxyReturn}{Returns}
+y-\/axis coordinate 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1TetherElement_acba25c822e91dbfeef86a5a0e653d80b}\label{classtether_1_1TetherElement_acba25c822e91dbfeef86a5a0e653d80b}} 
+\index{tether::TetherElement@{tether::TetherElement}!Z@{Z}}
+\index{Z@{Z}!tether::TetherElement@{tether::TetherElement}}
+\doxysubsubsection{\texorpdfstring{Z()}{Z()}}
+{\footnotesize\ttfamily std\+::double\+\_\+t tether\+::\+Tether\+Element\+::Z (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+z-\/axis coordinate getter 
+
+\begin{DoxyReturn}{Returns}
+z-\/axis coordinate 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/core/\mbox{\hyperlink{TetherElement_8hpp}{Tether\+Element.\+hpp}}\item 
+src/core/Tether\+Element.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,92 @@
+\hypertarget{vtkTetherFigure_8hpp_source}{}\doxysection{vtk\+Tether\+Figure.\+hpp}
+\label{vtkTetherFigure_8hpp_source}\index{src/graphics/vtkTetherFigure.hpp@{src/graphics/vtkTetherFigure.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Tether_8hpp}{Tether.hpp}}"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{TetherElement_8hpp}{TetherElement.hpp}}"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <vtkActor.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <vtkNamedColors.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <vtkSmartPointer.h>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <vtkRenderer.h>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <vtkRenderWindow.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <vtkRenderWindowInteractor.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <vtkSphereSource.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <vtkPoints.h>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <vtkPolyData.h>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <vtkAnimationCue.h>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <vtkSphereSource.h>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <vtkPolyDataMapper.h>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <vtkAnimationScene.h>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <vtkLineSource.h>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <vtkTubeFilter.h>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <vtkCamera.h>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{namespace }tether \{}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{keyword}{class }\mbox{\hyperlink{classtether_1_1vtkCustomAnimationCue}{vtkCustomAnimationCue}}: \textcolor{keyword}{public} vtkAnimationCue \{}
+\DoxyCodeLine{29         \textcolor{keyword}{public}:}
+\DoxyCodeLine{30             \textcolor{keyword}{static} \mbox{\hyperlink{classtether_1_1vtkCustomAnimationCue}{vtkCustomAnimationCue}}* New();}
+\DoxyCodeLine{31             \textcolor{comment}{// vtkTypeRevisionMacro(vtkCustomAnimationCue, vtkAnimationCue);}}
+\DoxyCodeLine{32             std::shared\_ptr<Tether> m\_tether;}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34             vtkSmartPointer<vtkPoints> m\_points;}
+\DoxyCodeLine{35             vtkSmartPointer<vtkLineSource> m\_lineSource;}
+\DoxyCodeLine{36             vtkSmartPointer<vtkRenderWindow> m\_renderWindow;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38         \textcolor{keyword}{protected}:}
+\DoxyCodeLine{39             \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} TickInternal(\textcolor{keywordtype}{double} currenttime, \textcolor{keywordtype}{double} deltatime, \textcolor{keywordtype}{double} clocktime) \{}
+\DoxyCodeLine{40                 \textcolor{comment}{// Updating Tether}}
+\DoxyCodeLine{41                 m\_tether-\/>Step(deltatime);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43                 \textcolor{comment}{// Putting TetherElement center in m\_points}}
+\DoxyCodeLine{44                 m\_points-\/>Reset();}
+\DoxyCodeLine{45                 std::shared\_ptr<TetherElement> tether\_element = m\_tether-\/>Head();}
+\DoxyCodeLine{46                 \textcolor{keywordflow}{for} (std::size\_t i = 0; i < m\_tether-\/>N(); i++) \{}
+\DoxyCodeLine{47                     m\_points-\/>InsertNextPoint(tether\_element-\/>X(), tether\_element-\/>Y(), tether\_element-\/>Z());}
+\DoxyCodeLine{48                     tether\_element = tether\_element-\/>Next();}
+\DoxyCodeLine{49                 \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51                 m\_lineSource-\/>Modified();}
+\DoxyCodeLine{52                 m\_renderWindow-\/>Render();}
+\DoxyCodeLine{53             \}}
+\DoxyCodeLine{54     \};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{comment}{// vtkStandardNewMacro(vtkCustomAnimationCue);}}
+\DoxyCodeLine{57     \textcolor{comment}{// vtkCxxRevisionMacro(vtkCustomAnimationCue, "{}\$Revision\$"{});}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{61     \textcolor{keyword}{class }\mbox{\hyperlink{classtether_1_1vtkTetherFigure}{vtkTetherFigure}} \{}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{64         \textcolor{keyword}{public}: \mbox{\hyperlink{classtether_1_1vtkTetherFigure_ad48a01042fa3531371079a295f360689}{vtkTetherFigure}}(std::shared\_ptr<Tether> tether);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{68         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1vtkTetherFigure_a51b2a573fb79e4f8e15817a21c6e18ee}{Show}}();}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72         \textcolor{keyword}{private}: std::map<std::shared\_ptr<TetherElement>, vtkSmartPointer<vtkSphereSource>> m\_tether\_element\_sphere\_source;}
+\DoxyCodeLine{73         \textcolor{keyword}{private}: std::map<std::shared\_ptr<TetherElement>, vtkSmartPointer<vtkActor>> m\_link\_actor;}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75         \textcolor{keyword}{private}: std::shared\_ptr<Tether> m\_tether;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77         \textcolor{keyword}{private}: vtkSmartPointer<vtkRenderWindow> m\_renderWindow;}
+\DoxyCodeLine{78         \textcolor{keyword}{private}: vtkSmartPointer<vtkRenderer> m\_renderer;}
+\DoxyCodeLine{79         \textcolor{keyword}{private}: vtkSmartPointer<vtkRenderWindowInteractor> m\_renderWindowInteractor;}
+\DoxyCodeLine{80         \textcolor{keyword}{private}: vtkSmartPointer<vtkNamedColors> m\_colors;}
+\DoxyCodeLine{81         \textcolor{keyword}{private}: vtkSmartPointer<vtkLineSource> m\_lineSource;}
+\DoxyCodeLine{82         \textcolor{keyword}{private}: vtkSmartPointer<vtkTubeFilter> m\_tubeFilter;}
+\DoxyCodeLine{83         \textcolor{keyword}{private}: vtkSmartPointer<vtkSphereSource> m\_sphereSource;}
+\DoxyCodeLine{84         \textcolor{keyword}{private}: vtkSmartPointer<vtkPolyDataMapper> m\_mapper;}
+\DoxyCodeLine{85         \textcolor{keyword}{private}: vtkSmartPointer<vtkPoints> m\_points;}
+\DoxyCodeLine{86         \textcolor{keyword}{private}: vtkSmartPointer<vtkActor> m\_actor;}
+\DoxyCodeLine{87         \textcolor{keyword}{private}: vtkSmartPointer<vtkAnimationScene> m\_scene;}
+\DoxyCodeLine{88         \textcolor{keyword}{private}: vtkSmartPointer<vtkCustomAnimationCue> m\_cue1;}
+\DoxyCodeLine{89         \textcolor{keyword}{private}: vtkSmartPointer<vtkCamera> m\_camera;}
+\DoxyCodeLine{90     \};}
+\DoxyCodeLine{91 \};}
+
+\end{DoxyCode}

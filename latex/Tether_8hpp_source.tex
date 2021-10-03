@@ -1,0 +1,60 @@
+\hypertarget{Tether_8hpp_source}{}\doxysection{Tether.\+hpp}
+\label{Tether_8hpp_source}\index{src/core/Tether.hpp@{src/core/Tether.hpp}}
+\mbox{\hyperlink{Tether_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <cstddef>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <Eigen/Dense>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <gsl/gsl\_vector.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <gsl/gsl\_multiroots.h>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{TetherElement_8hpp}{TetherElement.hpp}}"{}}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }tether \{}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{33     \textcolor{keyword}{class }\mbox{\hyperlink{classtether_1_1Tether}{Tether}} \{}
+\DoxyCodeLine{38         \textcolor{keyword}{public}: \mbox{\hyperlink{classtether_1_1Tether_a72e38d1fa932886361713d7670b2eb55}{Tether}}(std::double\_t length, std::size\_t n) : \mbox{\hyperlink{classtether_1_1Tether}{Tether}}(length, n, Eigen::Vector3d(0, 0, 0), Eigen::Vector3d(0.6*length, 0, 0)) \{\};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{46         \textcolor{keyword}{public}: \mbox{\hyperlink{classtether_1_1Tether_a72e38d1fa932886361713d7670b2eb55}{Tether}}(std::double\_t length, std::size\_t n, Eigen::Vector3d Xhead, Eigen::Vector3d Xtail);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{49         \textcolor{keyword}{public}: \mbox{\hyperlink{classtether_1_1Tether_ad4e2f7da95ea6746228a48e6d80340d9}{\string~Tether}}();}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{53         \textcolor{keyword}{public}: std::size\_t \mbox{\hyperlink{classtether_1_1Tether_a41cae451f3a1b8bed0c63c7fc86ed50b}{N}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{57         \textcolor{keyword}{public}: std::double\_t \mbox{\hyperlink{classtether_1_1Tether_a992afea4c73df9d826587ed3102a17f9}{Length}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{65         std::double\_t \mbox{\hyperlink{classtether_1_1Tether_a2e5aa6df154263b3ba4b58880fbf6299}{ComputeLength}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{69         \textcolor{keyword}{public}: std::shared\_ptr<TetherElement> \mbox{\hyperlink{classtether_1_1Tether_a019aa315363a3a0e048d2740d743afb0}{Head}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{73         \textcolor{keyword}{public}: std::shared\_ptr<TetherElement> \mbox{\hyperlink{classtether_1_1Tether_a37fd515c0ab4e52823ebadc0dd65f6c5}{Tail}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{81         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1Tether_a185eddfc25332cda39bf5cbb4ce2ebcc}{Step}}(\textcolor{keyword}{const} std::double\_t h);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{84         \textcolor{keyword}{private}: std::size\_t m\_n;}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{87         \textcolor{keyword}{private}: std::double\_t m\_length;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{90         \textcolor{keyword}{private}: std::shared\_ptr<TetherElement> m\_head;}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{93         \textcolor{keyword}{private}: std::shared\_ptr<TetherElement> m\_tail;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95         \textcolor{keyword}{private}: \textcolor{keywordtype}{int} GSLCatenary(\textcolor{keyword}{const} gsl\_vector *p, \textcolor{keywordtype}{void} *params, gsl\_vector *f);}
+\DoxyCodeLine{96         \textcolor{keyword}{private}: \textcolor{keywordtype}{void} SolveCatenary();}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98         \textcolor{keyword}{private}: gsl\_multiroot\_fsolver *s;}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} c1;}
+\DoxyCodeLine{101         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} c2;}
+\DoxyCodeLine{102         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} c3;}
+\DoxyCodeLine{103     \};}
+\DoxyCodeLine{104 \};}
+
+\end{DoxyCode}

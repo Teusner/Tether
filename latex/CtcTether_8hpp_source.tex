@@ -1,0 +1,31 @@
+\hypertarget{CtcTether_8hpp_source}{}\doxysection{Ctc\+Tether.\+hpp}
+\label{CtcTether_8hpp_source}\index{src/interval/CtcTether.hpp@{src/interval/CtcTether.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Tether_8hpp}{Tether.hpp}}"{}}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <ibex.h>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{keyword}{namespace }tether \{}
+\DoxyCodeLine{7     \textcolor{keyword}{class }\mbox{\hyperlink{classtether_1_1CtcTether}{CtcTether}} : \textcolor{keyword}{public} ibex::Ctc \{}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9         \textcolor{keyword}{public}: \mbox{\hyperlink{classtether_1_1CtcTether}{CtcTether}}() : ibex::Ctc(2) \{\};}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} AddTether(std::shared\_ptr<Tether> tether);}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} contract(ibex::IntervalVector\& box);}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15         \textcolor{keyword}{private}: std::shared\_ptr<Tether> m\_tether;}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17         \textcolor{keyword}{private}: std::double\_t m\_a;}
+\DoxyCodeLine{18         \textcolor{keyword}{private}: std::double\_t m\_b;}
+\DoxyCodeLine{19         \textcolor{keyword}{private}: std::double\_t m\_c;}
+\DoxyCodeLine{20         \textcolor{keyword}{private}: std::double\_t m\_theta;}
+\DoxyCodeLine{21         \textcolor{keyword}{private}: std::double\_t m\_alpha;}
+\DoxyCodeLine{22         \textcolor{keyword}{private}: std::double\_t m\_r;}
+\DoxyCodeLine{23         \textcolor{keyword}{private}: ibex::IntervalVector m\_mid;}
+\DoxyCodeLine{24     \};}
+\DoxyCodeLine{25 \}; \textcolor{comment}{// namespace tether}}
+
+\end{DoxyCode}

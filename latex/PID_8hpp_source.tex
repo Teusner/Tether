@@ -1,0 +1,107 @@
+\hypertarget{PID_8hpp_source}{}\doxysection{PID.\+hpp}
+\label{PID_8hpp_source}\index{src/core/PID.hpp@{src/core/PID.hpp}}
+\mbox{\hyperlink{PID_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <chrono>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <math.h>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }tether \{}
+\DoxyCodeLine{16     \textcolor{keyword}{class }\mbox{\hyperlink{classtether_1_1PID}{PID}} \{}
+\DoxyCodeLine{34         \textcolor{keyword}{public}: \mbox{\hyperlink{classtether_1_1PID_a06928379a80d0ea95cbb43f18fef0361}{PID}}(\textcolor{keyword}{const} std::double\_t \_p = 0.0,}
+\DoxyCodeLine{35                     \textcolor{keyword}{const} std::double\_t \_i = 0.0,}
+\DoxyCodeLine{36                     \textcolor{keyword}{const} std::double\_t \_d = 0.0,}
+\DoxyCodeLine{37                     \textcolor{keyword}{const} std::double\_t \_imax = -\/1.0,}
+\DoxyCodeLine{38                     \textcolor{keyword}{const} std::double\_t \_imin = 0.0,}
+\DoxyCodeLine{39                     \textcolor{keyword}{const} std::double\_t \_cmdMax = -\/1.0,}
+\DoxyCodeLine{40                     \textcolor{keyword}{const} std::double\_t \_cmdMin = 0.0,}
+\DoxyCodeLine{41                     \textcolor{keyword}{const} std::double\_t \_cmdOffset = 0.0);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{44         \textcolor{keyword}{public}: \mbox{\hyperlink{classtether_1_1PID_a8b0206adf998263024eff75400aadc86}{\string~PID}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{63         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_a93d3a17836911ce9e760cd6b5bbb220d}{Init}}(\textcolor{keyword}{const} std::double\_t \_p = 0.0,}
+\DoxyCodeLine{64                             \textcolor{keyword}{const} std::double\_t \_i = 0.0,}
+\DoxyCodeLine{65                             \textcolor{keyword}{const} std::double\_t \_d = 0.0,}
+\DoxyCodeLine{66                             \textcolor{keyword}{const} std::double\_t \_imax = -\/1.0,}
+\DoxyCodeLine{67                             \textcolor{keyword}{const} std::double\_t \_imin = 0.0,}
+\DoxyCodeLine{68                             \textcolor{keyword}{const} std::double\_t \_cmdMax = -\/1.0,}
+\DoxyCodeLine{69                             \textcolor{keyword}{const} std::double\_t \_cmdMin = 0.0,}
+\DoxyCodeLine{70                             \textcolor{keyword}{const} std::double\_t \_cmdOffset = 0.0);}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{74         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_a64ddcea387eff3da7bdd2dc20b8b86cb}{SetPGain}}(\textcolor{keyword}{const} std::double\_t \_p);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{78         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_ab8f6116ab1a63cbce98d272662a6a708}{SetIGain}}(\textcolor{keyword}{const} std::double\_t \_i);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{82         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_afc64193b11129be245095ff39c10e035}{SetDGain}}(\textcolor{keyword}{const} std::double\_t \_d);}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{86         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_a4b1faa6666d4ba252177ba1dc0da8f85}{SetIMax}}(\textcolor{keyword}{const} std::double\_t \_i);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{90         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_ad7734b82bfce1a3e144b7fc92f1d7e6c}{SetIMin}}(\textcolor{keyword}{const} std::double\_t \_i);}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{94         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_a91e63349b4db6aab70f71ab376b86bae}{SetCmdMax}}(\textcolor{keyword}{const} std::double\_t \_c);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{98         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_a1e2c31a0eb9e35e6512fd3052fdbe46b}{SetCmdMin}}(\textcolor{keyword}{const} std::double\_t \_c);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{103         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_a9ccf304d4e99f93c26324ec5b77beb34}{SetCmdOffset}}(\textcolor{keyword}{const} std::double\_t \_c);}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{107         \textcolor{keyword}{public}: \textcolor{keywordtype}{double} \mbox{\hyperlink{classtether_1_1PID_a80ae9f3ef324eff71d8031c67988454c}{PGain}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{111         \textcolor{keyword}{public}: \textcolor{keywordtype}{double} \mbox{\hyperlink{classtether_1_1PID_ae71e58d554a469858c8ab71beaa8729f}{IGain}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{115         \textcolor{keyword}{public}: \textcolor{keywordtype}{double} \mbox{\hyperlink{classtether_1_1PID_a579f760678df706b343833f9160f0ae4}{DGain}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{119         \textcolor{keyword}{public}: \textcolor{keywordtype}{double} \mbox{\hyperlink{classtether_1_1PID_a79411e06b95569cf524ffaf61c7e0417}{IMax}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{123         \textcolor{keyword}{public}: \textcolor{keywordtype}{double} \mbox{\hyperlink{classtether_1_1PID_af2f0828c101298e98789e34982755c4a}{IMin}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{127         \textcolor{keyword}{public}: \textcolor{keywordtype}{double} \mbox{\hyperlink{classtether_1_1PID_a4d9f806f3be5c3c7fcc895edbf06221b}{CmdMax}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{131         \textcolor{keyword}{public}: \textcolor{keywordtype}{double} \mbox{\hyperlink{classtether_1_1PID_acac112127ef744488c2aed00d5bd5089}{CmdMin}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{135         \textcolor{keyword}{public}: \textcolor{keywordtype}{double} \mbox{\hyperlink{classtether_1_1PID_a27de3cf9cb88b8b359a13680641b374a}{CmdOffset}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{144         \textcolor{keyword}{public}: \textcolor{keywordtype}{double} \mbox{\hyperlink{classtether_1_1PID_ab6716752708c9a3292081df845e2e71a}{Update}}(\textcolor{keyword}{const} std::double\_t \_error,}
+\DoxyCodeLine{145                                 \textcolor{keyword}{const} std::chrono::duration<double> \&\_dt);}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{149         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_a55cf3531b3f7e7b3338de3232c2af41f}{SetCmd}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} \_cmd);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{153         \textcolor{keyword}{public}: \textcolor{keywordtype}{double} \mbox{\hyperlink{classtether_1_1PID_ae800824726d691dd4347aae20161f4b4}{Cmd}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{159         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_ab09552e4657ccb62b32ea6eff0d06c25}{Errors}}(std::double\_t \&\_pe, std::double\_t \&\_ie, std::double\_t \&\_de) \textcolor{keyword}{const};}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{164         \textcolor{keyword}{public}: \mbox{\hyperlink{classtether_1_1PID}{PID}} \&\mbox{\hyperlink{classtether_1_1PID_a8625cc053e8a92937814798f3c5a6d56}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classtether_1_1PID}{PID}} \&\_p);}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{167         \textcolor{keyword}{public}: \textcolor{keywordtype}{void} \mbox{\hyperlink{classtether_1_1PID_a9979f144c7180a3ecad90dea474c19c3}{Reset}}();}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{170         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} pErrLast = 0.0;}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{173         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} pErr = 0.0;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{176         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} iErr = 0.0;}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{179         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} dErr = 0.0;}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{182         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} pGain;}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{185         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} iGain = 0.0;}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{188         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} dGain = 0.0;}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{191         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} iMax = -\/1.0;}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{194         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} iMin = 0.0;}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{197         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} cmd = 0.0;}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{200         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} cmdMax = -\/1.0;}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{203         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} cmdMin = 0.0;}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{206         \textcolor{keyword}{private}: \textcolor{keywordtype}{double} cmdOffset = 0.0;}
+\DoxyCodeLine{207     \};}
+\DoxyCodeLine{208 \}; \textcolor{comment}{// namespace tether}}
+
+\end{DoxyCode}

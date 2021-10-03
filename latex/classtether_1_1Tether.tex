@@ -1,0 +1,206 @@
+\hypertarget{classtether_1_1Tether}{}\doxysection{tether\+::Tether Class Reference}
+\label{classtether_1_1Tether}\index{tether::Tether@{tether::Tether}}
+
+
+\mbox{\hyperlink{classtether_1_1Tether}{Tether}} class to simulate tethers using a doubly linked list of \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}.  
+
+
+
+
+{\ttfamily \#include $<$tether/\+Tether.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classtether_1_1Tether_a72e38d1fa932886361713d7670b2eb55}{Tether}} (std\+::double\+\_\+t length, std\+::size\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Constructor, \mbox{\hyperlink{classtether_1_1Tether}{Tether}} with length and a number of Tether\+Elements. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classtether_1_1Tether_aa7fe887995a8d9f6b0a84dbd7ed9ede9}{Tether}} (std\+::double\+\_\+t length, std\+::size\+\_\+t n, Eigen\+::\+Vector3d Xhead, Eigen\+::\+Vector3d Xtail)
+\begin{DoxyCompactList}\small\item\em Constructor, \mbox{\hyperlink{classtether_1_1Tether}{Tether}} with length, number of Tether\+Elements and extremities positions. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classtether_1_1Tether_ad4e2f7da95ea6746228a48e6d80340d9}\label{classtether_1_1Tether_ad4e2f7da95ea6746228a48e6d80340d9}} 
+{\bfseries $\sim$\+Tether} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classtether_1_1Tether_a41cae451f3a1b8bed0c63c7fc86ed50b}{N}} () const
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classtether_1_1Tether}{Tether}} number of \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \end{DoxyCompactList}\item 
+std\+::double\+\_\+t \mbox{\hyperlink{classtether_1_1Tether_a992afea4c73df9d826587ed3102a17f9}{Length}} () const
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classtether_1_1Tether}{Tether}} length. \end{DoxyCompactList}\item 
+std\+::double\+\_\+t \mbox{\hyperlink{classtether_1_1Tether_a2e5aa6df154263b3ba4b58880fbf6299}{Compute\+Length}} () const
+\begin{DoxyCompactList}\small\item\em Compute the current \mbox{\hyperlink{classtether_1_1Tether}{Tether}} length Compute the real \mbox{\hyperlink{classtether_1_1Tether}{Tether}} length by summing length of links between each \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} from head to tail. The result is the current Tteher length and could be different of the value returned by \mbox{\hyperlink{classtether_1_1Tether_a992afea4c73df9d826587ed3102a17f9}{Tether\+::\+Length}}. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $>$ \mbox{\hyperlink{classtether_1_1Tether_a019aa315363a3a0e048d2740d743afb0}{Head}} () const
+\begin{DoxyCompactList}\small\item\em Head \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} pointer. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $>$ \mbox{\hyperlink{classtether_1_1Tether_a37fd515c0ab4e52823ebadc0dd65f6c5}{Tail}} () const
+\begin{DoxyCompactList}\small\item\em Tail \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} pointer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classtether_1_1Tether_a185eddfc25332cda39bf5cbb4ce2ebcc}{Step}} (const std\+::double\+\_\+t h)
+\begin{DoxyCompactList}\small\item\em Step method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classtether_1_1Tether}{Tether}} class to simulate tethers using a doubly linked list of \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. 
+
+\hypertarget{classtether_1_1Tether_autotoc_md5}{}\doxysubsubsection{ \+Doubly Linked List structure}\label{classtether_1_1Tether_autotoc_md5}
+The \mbox{\hyperlink{classtether_1_1Tether}{Tether}} is simulated using doubly linked list. This class hold a pointer to the head and the tail \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} accessible through \mbox{\hyperlink{classtether_1_1Tether_a019aa315363a3a0e048d2740d743afb0}{Tether\+::\+Head()}} and \mbox{\hyperlink{classtether_1_1Tether_a37fd515c0ab4e52823ebadc0dd65f6c5}{Tether\+::\+Tail()}}.\hypertarget{classtether_1_1Tether_autotoc_md6}{}\doxysubsubsection{Example}\label{classtether_1_1Tether_autotoc_md6}
+Here is a basic example of \mbox{\hyperlink{classtether_1_1Tether}{Tether}} use. It instanciate a \mbox{\hyperlink{classtether_1_1Tether}{Tether}} with some parameters, and show how to access these parameters through methods.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{Tether_8hpp}{Tether.hpp}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{TetherElement_8hpp}{TetherElement.hpp}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <cstdlib>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using namespace }tether;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int}, \textcolor{keywordtype}{char}*[]) \{}
+\DoxyCodeLine{    \textcolor{comment}{// Tether parameters}}
+\DoxyCodeLine{    std::double\_t length = 10;}
+\DoxyCodeLine{    std::size\_t n = 100;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Create a Tether}}
+\DoxyCodeLine{    \mbox{\hyperlink{classtether_1_1Tether_a72e38d1fa932886361713d7670b2eb55}{Tether}} tether(length, n);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Accessing Tether parameters}}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}>> Tether parameters"{}} << std::endl;}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}n \(\backslash\)t: "{}} << tether.N() << std::endl;}
+\DoxyCodeLine{    std::cout << \textcolor{stringliteral}{"{}length \(\backslash\)t: "{}} << tether.Length() << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Update the state from t to t + h}}
+\DoxyCodeLine{    std::double\_t h = 0.01;}
+\DoxyCodeLine{    tether.Step(h);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} EXIT\_SUCCESS;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classtether_1_1Tether_a72e38d1fa932886361713d7670b2eb55}\label{classtether_1_1Tether_a72e38d1fa932886361713d7670b2eb55}} 
+\index{tether::Tether@{tether::Tether}!Tether@{Tether}}
+\index{Tether@{Tether}!tether::Tether@{tether::Tether}}
+\doxysubsubsection{\texorpdfstring{Tether()}{Tether()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily tether\+::\+Tether\+::\+Tether (\begin{DoxyParamCaption}\item[{std\+::double\+\_\+t}]{length,  }\item[{std\+::size\+\_\+t}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor, \mbox{\hyperlink{classtether_1_1Tether}{Tether}} with length and a number of Tether\+Elements. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em length} & The length of the \mbox{\hyperlink{classtether_1_1Tether}{Tether}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & The number of \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} used to simulate the \mbox{\hyperlink{classtether_1_1Tether}{Tether}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classtether_1_1Tether_aa7fe887995a8d9f6b0a84dbd7ed9ede9}\label{classtether_1_1Tether_aa7fe887995a8d9f6b0a84dbd7ed9ede9}} 
+\index{tether::Tether@{tether::Tether}!Tether@{Tether}}
+\index{Tether@{Tether}!tether::Tether@{tether::Tether}}
+\doxysubsubsection{\texorpdfstring{Tether()}{Tether()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily tether\+::\+Tether\+::\+Tether (\begin{DoxyParamCaption}\item[{std\+::double\+\_\+t}]{length,  }\item[{std\+::size\+\_\+t}]{n,  }\item[{Eigen\+::\+Vector3d}]{Xhead,  }\item[{Eigen\+::\+Vector3d}]{Xtail }\end{DoxyParamCaption})}
+
+
+
+Constructor, \mbox{\hyperlink{classtether_1_1Tether}{Tether}} with length, number of Tether\+Elements and extremities positions. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em length} & The length of the \mbox{\hyperlink{classtether_1_1Tether}{Tether}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em n} & The number of \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} used to simulate the \mbox{\hyperlink{classtether_1_1Tether}{Tether}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em Xhead} & The initial state of the head \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em Xtail} & The initial state of the tail \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classtether_1_1Tether_a2e5aa6df154263b3ba4b58880fbf6299}\label{classtether_1_1Tether_a2e5aa6df154263b3ba4b58880fbf6299}} 
+\index{tether::Tether@{tether::Tether}!ComputeLength@{ComputeLength}}
+\index{ComputeLength@{ComputeLength}!tether::Tether@{tether::Tether}}
+\doxysubsubsection{\texorpdfstring{ComputeLength()}{ComputeLength()}}
+{\footnotesize\ttfamily std\+::double\+\_\+t tether\+::\+Tether\+::\+Compute\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Compute the current \mbox{\hyperlink{classtether_1_1Tether}{Tether}} length Compute the real \mbox{\hyperlink{classtether_1_1Tether}{Tether}} length by summing length of links between each \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} from head to tail. The result is the current Tteher length and could be different of the value returned by \mbox{\hyperlink{classtether_1_1Tether_a992afea4c73df9d826587ed3102a17f9}{Tether\+::\+Length}}. 
+
+\begin{DoxyReturn}{Returns}
+The computed \mbox{\hyperlink{classtether_1_1Tether}{Tether}} length 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1Tether_a019aa315363a3a0e048d2740d743afb0}\label{classtether_1_1Tether_a019aa315363a3a0e048d2740d743afb0}} 
+\index{tether::Tether@{tether::Tether}!Head@{Head}}
+\index{Head@{Head}!tether::Tether@{tether::Tether}}
+\doxysubsubsection{\texorpdfstring{Head()}{Head()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $>$ tether\+::\+Tether\+::\+Head (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Head \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} pointer. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the head \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1Tether_a992afea4c73df9d826587ed3102a17f9}\label{classtether_1_1Tether_a992afea4c73df9d826587ed3102a17f9}} 
+\index{tether::Tether@{tether::Tether}!Length@{Length}}
+\index{Length@{Length}!tether::Tether@{tether::Tether}}
+\doxysubsubsection{\texorpdfstring{Length()}{Length()}}
+{\footnotesize\ttfamily std\+::double\+\_\+t tether\+::\+Tether\+::\+Length (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+\mbox{\hyperlink{classtether_1_1Tether}{Tether}} length. 
+
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{classtether_1_1Tether}{Tether}} length 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1Tether_a41cae451f3a1b8bed0c63c7fc86ed50b}\label{classtether_1_1Tether_a41cae451f3a1b8bed0c63c7fc86ed50b}} 
+\index{tether::Tether@{tether::Tether}!N@{N}}
+\index{N@{N}!tether::Tether@{tether::Tether}}
+\doxysubsubsection{\texorpdfstring{N()}{N()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t tether\+::\+Tether\+::N (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+\mbox{\hyperlink{classtether_1_1Tether}{Tether}} number of \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}}. 
+
+\begin{DoxyReturn}{Returns}
+The number of \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} in the \mbox{\hyperlink{classtether_1_1Tether}{Tether}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classtether_1_1Tether_a185eddfc25332cda39bf5cbb4ce2ebcc}\label{classtether_1_1Tether_a185eddfc25332cda39bf5cbb4ce2ebcc}} 
+\index{tether::Tether@{tether::Tether}!Step@{Step}}
+\index{Step@{Step}!tether::Tether@{tether::Tether}}
+\doxysubsubsection{\texorpdfstring{Step()}{Step()}}
+{\footnotesize\ttfamily void tether\+::\+Tether\+::\+Step (\begin{DoxyParamCaption}\item[{const std\+::double\+\_\+t}]{h }\end{DoxyParamCaption})}
+
+
+
+Step method. 
+
+The method used to compute and update the \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} state with the integration time-\/step h.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em h} & integration time in seconds \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classtether_1_1Tether_a37fd515c0ab4e52823ebadc0dd65f6c5}\label{classtether_1_1Tether_a37fd515c0ab4e52823ebadc0dd65f6c5}} 
+\index{tether::Tether@{tether::Tether}!Tail@{Tail}}
+\index{Tail@{Tail}!tether::Tether@{tether::Tether}}
+\doxysubsubsection{\texorpdfstring{Tail()}{Tail()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} $>$ tether\+::\+Tether\+::\+Tail (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Tail \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} pointer. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the tail \mbox{\hyperlink{classtether_1_1TetherElement}{Tether\+Element}} 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/core/\mbox{\hyperlink{Tether_8hpp}{Tether.\+hpp}}\item 
+src/core/Tether.\+cpp\end{DoxyCompactItemize}
